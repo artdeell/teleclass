@@ -54,7 +54,7 @@ ROOT_URLCONF = 'TeleClass.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['class\\templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
