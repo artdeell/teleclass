@@ -1,4 +1,4 @@
 django
 djangorestframework
 markdown
-django-filter
+Pillow

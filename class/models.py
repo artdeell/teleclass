@@ -20,7 +20,7 @@ class Child(models.Model):
     patronymic = models.TextField('Отчество')
     login = models.TextField('Логин')
     password = models.TextField('Пароль')
-    parent = models.ForeignKey(Parent)
+    parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Ребёнок"
@@ -32,7 +32,7 @@ class Child(models.Model):
 class Course(models.Model):
     name = models.TextField('Название')
     description = models.TextField('Описание')
-    max_mark = models.ImageField('Максимальное количество баллов')
+    max_mark = models.IntegerField('Максимальное количество баллов')
 
     class Meta:
         verbose_name = "Курс"
@@ -48,6 +48,7 @@ class Task(models.Model):
     mark = models.IntegerField("Максимальный балл")
     text = models.TextField("Текст задания")
     img = models.ImageField("Картинка задания")
+    number = models.IntegerField("Номер задания")
 
     class Meta:
         verbose_name = "Задание"
@@ -71,7 +72,7 @@ class ActualCourse(models.Model):
         return str(f"{self.name}")
         
 class ActualTask(models.Model):
-    actual_course = models.ForeignKey(ActualCourse)
+    actual_course = models.ForeignKey(ActualCourse, on_delete=models.CASCADE)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     mark = models.IntegerField("Количество баллов")
     time = models.TimeField('Время выполнеия задания')
@@ -89,3 +90,10 @@ class Variant(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     text = models.TextField('Текст варианта')
     status = models.BooleanField('Правильность варианта')
+
+    class Meta:
+        verbose_name = "Выарианет ответа"
+        verbose_name_plural = "Варианты ответов"
+
+    def __str__(self):
+        return str(f"{self.task}<->{self.status}")

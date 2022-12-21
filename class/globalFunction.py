@@ -10,3 +10,6 @@ def search_obj(mod: djmodels, **qwargs):
     if len(search) == 0:
         return None
     return search
+
+def search_all_obj(mod: djmodels):
+    return mod.objects.all()
