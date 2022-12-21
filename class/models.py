@@ -31,8 +31,8 @@ class Child(models.Model):
 
 class Course(models.Model):
     name = models.TextField('Название')
-    description = models.TextField('Описание')
     max_mark = models.IntegerField('Максимальное количество баллов')
+    description = models.TextField('Описание')
 
     class Meta:
         verbose_name = "Курс"
@@ -43,12 +43,12 @@ class Course(models.Model):
 
 class Task(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    name = models.TextField('Название задания')
-    type = models.IntegerField('Тип задания')
-    mark = models.IntegerField("Максимальный балл")
-    text = models.TextField("Текст задания")
-    img = models.ImageField("Картинка задания")
     number = models.IntegerField("Номер задания")
+    name = models.TextField('Название задания')
+    mark = models.IntegerField("Максимальный балл")
+    description = models.TextField("Описание задания")
+    type = models.IntegerField('Тип задания')
+    img = models.ImageField("Картинка задания")
 
     class Meta:
         verbose_name = "Задание"
@@ -61,8 +61,8 @@ class Task(models.Model):
 
 class ActualCourse(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    child = models.ForeignKey(Child, on_delete=models.CASCADE)
     mark = models.IntegerField('Количество баллов')
+    child = models.ForeignKey(Child, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Акутаальный курс"
