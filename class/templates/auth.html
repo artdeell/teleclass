@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>{{title}}</title>
+</head>
+<body>
+    <div class="screen-row" id="auth">
+        <div class="col" id="auth-left">
+            <img class="logo-teleclass"src="{% static 'pictures/teleclass.png' %}" alt="" width="700px">
+            <div class="logo-description">ТелеКласс - удобный
+                сервис цифрового
+                образования для
+                учителей, учеников и их родителей
+            </div>
+        </div>
+        <div class="col" id="auth-right">
+            <div class="registration-form">
+                <div class="auth-input-form">
+                    <label for="auth.name">Имя</label>
+                    <input type="text" class="auth.name">
+                    <span class="error-text">Необходимо ввести имя</span>
+                </div>
+                <div class="auth-input-form">
+                    <label for="auth.surname">Фамилия</label>
+                    <input type="text" class="auth.surname">
+                    <span class="error-text">Необходимо ввести фамилию</span>
+                </div>
+                <div class="auth-input-form">
+                    <label for="auth.patronymic">Отчество</label>
+                    <input type="text" class="auth.patronymic">
+                    <span class="error-text">Необходимо ввести отчество</span>
+                </div>
+                <div class="auth-input-form">
+                    <label for="auth.phone">Номер телефона</label>
+                    <input type="text" class="auth.phone">
+                    <span class="error-text">Необходимо ввести номер телефона</span>
+                </div>
+                <div class="auth-input-form">
+                    <label for="auth.password">Пароль</label>
+                    <input type="password" class="auth.phone">
+                    <span class="error-text">Необходимо ввести пароль</span>
+                </div>
+                <div class="auth-input-form">
+                    <label for="auth.password-repeat">Повтор пароля</label>
+                    <input type="password" class="auth.phone">
+                    <span class="error-text">Необходимо ввести повтор пароля</span>
+                </div>
+                <button>Создать аккаунт и войти</but>
+                <button id="have-account">У меня уже есть аккаунт</but>
+            </div>
+            <div class="login-form">
+                <div class="auth-input-form">
+                    <label for="auth.phone">Номер телефона</label>
+                    <input type="text" class="auth.phone">
+                    <span class="error-text">Необходимо ввести номер телефона</span>
+                </div>
+                <div class="auth-input-form">
+                    <label for="auth.phone">Пароль</label>
+                    <input type="text" class="auth.phone">
+                    <span class="error-text">Необходимо ввести номер телефона</span>
+                </div>
+                <button>Войти</but>
+                <button id="not-have-account">У меня еще нет аккаунта</but>
+            </div>
+        </div>
+    </div>
+    <img class = "absolute-img"src="{% static 'pictures/child.png' %}" alt="EBLAN">
+
+    <script charset="UTF-8" src="{% static 'js/auth.js' %}"></script>
+
+</body>
+</html>
