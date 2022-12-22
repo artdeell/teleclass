@@ -36,6 +36,7 @@ body {
     flex-direction: row;
     width: 100%;
     justify-content: center;
+    align-items: center;
 }
 
 .row#screen-row {
@@ -105,15 +106,24 @@ button {
     height: 50px;
     font-family: Molot;
     font-weight: 700;
-    border-radius: 10px;
-    border: 0;
+    border-radius: 30px;
+    border: 2px solid;
+    border-color: white;
     background-color: rgb(31 34 41);
     color: white;
     margin-bottom: 20px;
     cursor: pointer;
     margin-right: 10px;
+    font-weight: 700;
+
 }
 
 button:hover {
     opacity: .7;
+}
+
+button.small{
+    width: 95px;
+    margin-bottom: 0;
+    margin-right: 5px;
 }
