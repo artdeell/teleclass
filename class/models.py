@@ -14,13 +14,27 @@ class Parent(models.Model):
     def __str__(self):
         return str(f"{self.name}<->{self.surname}")
 
+class Pizdos(models.Model):
+    name = models.TextField('Имя')
+    surname = models.TextField('Фамилия')
+    patronymic = models.TextField('Отчество')
+    login = models.TextField('Логин')
+    password = models.TextField('Пароль')
+
+    class Meta:
+        verbose_name = "Родитель"
+        verbose_name_plural = "Родители"
+
+    def __str__(self):
+        return str(f"{self.name}<->{self.surname}")        
+
 class Child(models.Model):
     name = models.TextField('Имя')
     surname = models.TextField('Фамилия')
     patronymic = models.TextField('Отчество')
     login = models.TextField('Логин')
     password = models.TextField('Пароль')
-    parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
+    parent = models.ForeignKey(Parent, on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = "Ребёнок"
