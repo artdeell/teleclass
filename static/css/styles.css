@@ -318,7 +318,7 @@ button.course-open{
     margin-top: 15px;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 95%;
 }
 .theory-row{
     display: inline-flex;
@@ -374,7 +374,7 @@ button.back-to-catalog{
     margin-top: 15px;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 95%;
 }
 
 .practice-row{
