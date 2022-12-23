@@ -8,6 +8,9 @@
 {% endblock background-image %}
 
 {% block main-window %}
+
+<script charset="UTF-8" src="{% static 'js/catalog.js' %}"></script>
+
 <div class="search">
     <div class="search-row">
         <div class="search-icon"></div>
@@ -16,7 +19,7 @@
     </div>
 </div>
 
-<div class="catalog">
+<div class="catalog" onload="getCourse()">
     <div class="catalog-row">
         <div class="course">
             <div class="course-row-top">
@@ -232,7 +235,6 @@
         Больше курсов
     </button>
 </div>
-
 
 
 {% endblock main-window %}
