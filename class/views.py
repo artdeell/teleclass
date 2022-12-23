@@ -7,3 +7,6 @@ def auth(request):
 
 def catalog(request, id):
     return render(request, 'catalog.html')
+
+def course(request):
+    return render(request, 'course.html')
