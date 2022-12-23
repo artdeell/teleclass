@@ -35,7 +35,16 @@ class Autorizations(APIView):
 
 class Сourses(APIView):
     def get(self, request, id):
-        return Response(serializers.serialize('json', search_all_obj(Course)))
+        search = search_all_obj(Course)
+        response = {'len':len(search)}
+        for i in range(len(search)):
+            response[i] = {
+                'id':search[i].id,
+                'name':search[i].name,
+                'points':search[i].max_mark,
+                'description':search[i].description
+            }
+        return Response(response)
 
     def post(self, request, id):
         return Response(serializers.serialize('json', search_obj(Course, **request.data)))

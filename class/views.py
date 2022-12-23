@@ -5,5 +5,5 @@ from django.shortcuts import render
 def auth(request):
     return render(request, 'auth.html', {'title': 'Авторизация'})
 
-def catalog(request):
+def catalog(request, id):
     return render(request, 'catalog.html')
