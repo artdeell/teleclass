@@ -90,6 +90,17 @@ button:hover{
     cursor: pointer;
 }
 
+/* borders */
+.border-gray{
+    width: 100%;
+    border: 1px solid rgb(122 122 122);
+}
+
+p{
+    text-indent: 60px;
+    text-align: justify;
+}
+
 /* ELEMENTS */
 
 /* Main-window */
@@ -321,13 +332,135 @@ button.course-open{
     border-radius: 25px;
 }
 
+.theory-col{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .theory-title-row{
     display: flex;
-    flex-flow: row ;
+    flex-flow: row nowrap;
     height: 115px;
     flex: 0, 1, 1100px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 30px;
 }
 
 button.back-to-catalog{
+    width: 150px;
+    height: 35px;
+    background-color: rgba(65 166 116);
+    border: 0;
+    border-radius: 5px;
+}
 
+.theory-title{
+    font-size: 36px;
+    font-family: serif-bold;
+}
+
+.theory-content-row{
+    font-family: sans-regular;
+    font-size: 18px;
+    margin: 15px;
+}
+
+/* Practice */
+.practice{
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.practice-row{
+    display: inline-flex;
+    justify-content: space-around;
+    margin: auto;
+    flex: 0 1 1100px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 10px;
+    background-color: rgb(240 241 242);
+    border-radius: 25px;
+}
+
+.practice-title-row{
+    display: flex;
+    flex-flow: row nowrap;
+    height: 115px;
+    flex: 0, 1, 1100px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 30px;
+}
+
+.practice-col{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+button.back-to-catalog{
+    width: 150px;
+    height: 35px;
+    background-color: rgba(65 166 116);
+    border: 0;
+    border-radius: 5px;
+}
+
+.practice-title{
+    font-size: 36px;
+    font-family: serif-bold;
+}
+
+.practice-number{
+    font-size: 36px;
+    font-family: serif-bold;
+}
+
+.practice-content-row{
+    font-family: sans-regular;
+    font-size: 18px;
+    margin: 15px;
+}
+
+.practice-response-options-row{
+    display: flex;
+    flex-direction: column;
+}
+
+.answer-option-row{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    flex: 0, 1, 350px;
+    margin: 15px 0;
+    margin-right: 0;
+}
+
+input.answer-option{
+	min-width: 20px;
+    min-height: 20px;
+    margin-left: 60px;
+    margin-right: 30px;
+}
+
+.answer-option-text{
+    font-family: sans-regular;
+    font-size: 18px;
+}
+button.end-course{
+    margin: 15px 0;
+    width: 59%;
+    height: 45px;
+    border-radius: 15px;
+    border: 0;
+    background-color: rgba(65 166 116);
+    font-size: 24px;
 }
