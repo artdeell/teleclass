@@ -35,14 +35,6 @@ class Autorizations(APIView):
 
 class Сourses(APIView):
     def get(self, request, id):
-        # courses = search_all_obj(Course)
-        # respons = []
-        # for cours in courses:
-        #     respons.append(
-        #         {
-        #             'name': name
-        #         }
-        #     )
         return Response(serializers.serialize('json', search_all_obj(Course)))
 
     def post(self, request, id):
@@ -61,3 +53,32 @@ class TakeCourse(APIView):
                 create_obj(ActualTask, actual_course=act_cours, task=task, mark=task.mark, time=0, count=0, status=False)
             return Response({id: act_cours.id}, status=status.HTTP_200_OK)
                 
+class SearchChild(APIView):
+    def get(self, request, id):
+        return Response(serializers.serialize('json', search_all_obj(Child)))
+    
+    def post(self, request, id):
+        return Response(serializers.serialize('json', search_obj(Child, **request.data)))
+
+
+class TakeChild(APIView):
+    def put(self, request, id):
+        user_type = request.data.pop('user_type')
+        child = search_obj(Child, **request.data)[0]
+        if user_type == 'parent' and child.parent == None: #посмотреть что содержит ребёнок с null
+            parent = search_obj(Parent, id=id)
+            child.parent = parent
+        # elif user_type == 'teacher' and child.teacher == None: #посмотреть что содержит ребёнок с null
+        #     teacher = search_obj(Teacher, id=id)
+        #     child.teacher = teacher
+        else:
+            return Response({'error':'Данный ребёнок уже имеет родителя или преподавателя'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializers.serialize('json', child))
+        
+
+class TaskInfo(APIView):
+    def get(self, request, id, cours, number):
+        course = search_obj(Course, id=cours)[0]
+        task = search_obj(Task, course=course, number=number)
+        variants = search_obj(Variant, task=task)[0]
+        return Response(serializers.serialize('json', variants))
