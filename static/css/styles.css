@@ -299,3 +299,35 @@ button.course-open{
     border-radius: 5px;
     border: 0;
 }
+
+/* Theory */
+.theory{
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.theory-row{
+    display: inline-flex;
+    justify-content: space-around;
+    margin: auto;
+    flex: 0 1 1100px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 10px;
+    background-color: rgb(240 241 242);
+    border-radius: 25px;
+}
+
+.theory-title-row{
+    display: flex;
+    flex-flow: row ;
+    height: 115px;
+    flex: 0, 1, 1100px;
+}
+
+button.back-to-catalog{
+
+}

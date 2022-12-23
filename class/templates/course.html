@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block background-image %}
+<div class="background">
+    <img class="background" src="{% static 'pictures/background-catalog.png' %}"></img>
+</div>
+{% endblock background-image %}
+
+{% block main-window %}
+<div class="theory">
+    <div class="theory-row">
+        <div class="theory-col">
+            <div class="theory-title-row">
+                <div class="theory-title">
+                    Задание
+                </div>
+                <button class="back-to-catalog"></button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main-window %}
