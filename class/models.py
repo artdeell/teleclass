@@ -1,6 +1,7 @@
 from django.db import models
 
 class Parent(models.Model):
+    id = models.BigAutoField(primary_key=True)
     name = models.TextField('Имя')
     surname = models.TextField('Фамилия')
     patronymic = models.TextField('Отчество')
@@ -15,12 +16,13 @@ class Parent(models.Model):
         return str(f"{self.name}<->{self.surname}")
 
 class Child(models.Model):
+    id = models.BigAutoField(primary_key=True)
     name = models.TextField('Имя')
     surname = models.TextField('Фамилия')
     patronymic = models.TextField('Отчество')
     login = models.TextField('Логин')
     password = models.TextField('Пароль')
-    parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
+    parent = models.ForeignKey(Parent, on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = "Ребёнок"
