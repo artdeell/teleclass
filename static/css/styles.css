@@ -47,6 +47,9 @@ body {
 /* footer */
 footer{
     background-color: rgb(31 34 41);
+    color: white;
+    font-size: large;
+    text-align: center;
 }
 
 /* cols */
@@ -146,7 +149,6 @@ a.nav-menu{
 }
 
 /* Search */
-
 .search{
     position: relative;
     display: flex;
@@ -210,7 +212,21 @@ button.search-button{
     flex: 0 1 1100px;
     align-items: center;
     flex-wrap: wrap;
-    padding: 0 10px;
+    padding: 0 10px; 
+}
+
+.add-courses-row{
+    text-align: center;
+    width: 100%;
+}
+
+button.add-courses{
+    background-color: rgba(65 166 116);
+    width: 300px;
+    height: 35px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: 15px;
 }
 
 .course{
