@@ -23,32 +23,32 @@
             <div class="registration-form">
                 <div class="auth-input-form">
                     <label for="auth.name">Имя</label>
-                    <input type="text" class="auth.name">
+                    <input type="text" class="auth.name" id="name">
                     <span class="error-text">Необходимо ввести имя</span>
                 </div>
                 <div class="auth-input-form">
                     <label for="auth.surname">Фамилия</label>
-                    <input type="text" class="auth.surname">
+                    <input type="text" class="auth.surname" id="surname">
                     <span class="error-text">Необходимо ввести фамилию</span>
                 </div>
                 <div class="auth-input-form">
                     <label for="auth.patronymic">Отчество</label>
-                    <input type="text" class="auth.patronymic">
+                    <input type="text" class="auth.patronymic" id="patronymic">
                     <span class="error-text">Необходимо ввести отчество</span>
                 </div>
                 <div class="auth-input-form">
                     <label for="auth.phone">Номер телефона</label>
-                    <input type="text" class="auth.phone">
+                    <input type="text" class="auth.phone" id="phone">
                     <span class="error-text">Необходимо ввести номер телефона</span>
                 </div>
                 <div class="auth-input-form">
                     <label for="auth.password">Пароль</label>
-                    <input type="password" class="auth.phone">
+                    <input type="password" class="auth.phone" id="password">
                     <span class="error-text">Необходимо ввести пароль</span>
                 </div>
                 <div class="auth-input-form">
                     <label for="auth.password-repeat">Повтор пароля</label>
-                    <input type="password" class="auth.phone">
+                    <input type="password" class="auth.phone" id="pass-repeat">
                     <span class="error-text">Необходимо ввести повтор пароля</span>
                 </div>
                 <div class="auth-input-form">
@@ -60,7 +60,7 @@
                     </div>
                     <span class="error-text">Необходимо ввести повтор пароля</span>
                 </div>
-                <button>Создать аккаунт и войти</but>
+                <button onclick="registrations()">Создать аккаунт и войти</but>
                 <button id="have-account">У меня уже есть аккаунт</but>
             </div>
             <div class="login-form">
