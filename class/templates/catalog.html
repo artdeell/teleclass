@@ -21,7 +21,7 @@
 
 <div class="catalog" onload="getCourse()">
     <div class="catalog-row">
-        <div class="course">
+        <!-- <div class="course">
             <div class="course-row-top">
                 <div class="course-col">
                     <div class="course-title">
@@ -43,191 +43,7 @@
                     Открыть курс
                 </button>
             </div>
-        </div>
-        <div class="course">
-            <div class="course-row-top">
-                <div class="course-col">
-                    <div class="course-title">
-                        Название курса
-                    </div>
-                    <div class="course-description">
-                        Описание курса
-                    </div>
-                </div>
-                <div class="course-icon">
-                    <img src="{% static 'pictures/default-course-icon.png' %}" class="course-icon-img">
-                </div>
-            </div>
-            <div class="course-row-bot">
-                <div class="course-max-point">
-                    098
-                </div>
-                <button class="course-open">
-                    Открыть курс
-                </button>
-            </div>
-        </div>
-        <div class="course">
-            <div class="course-row-top">
-                <div class="course-col">
-                    <div class="course-title">
-                        Название курса
-                    </div>
-                    <div class="course-description">
-                        Описание курса
-                    </div>
-                </div>
-                <div class="course-icon">
-                    <img src="{% static 'pictures/default-course-icon.png' %}" class="course-icon-img">
-                </div>
-            </div>
-            <div class="course-row-bot">
-                <div class="course-max-point">
-                    098
-                </div>
-                <button class="course-open">
-                    Открыть курс
-                </button>
-            </div>
-        </div>
-        <div class="course">
-            <div class="course-row-top">
-                <div class="course-col">
-                    <div class="course-title">
-                        Название курса
-                    </div>
-                    <div class="course-description">
-                        Описание курса
-                    </div>
-                </div>
-                <div class="course-icon">
-                    <img src="{% static 'pictures/default-course-icon.png' %}" class="course-icon-img">
-                </div>
-            </div>
-            <div class="course-row-bot">
-                <div class="course-max-point">
-                    098
-                </div>
-                <button class="course-open">
-                    Открыть курс
-                </button>
-            </div>
-        </div>
-        <div class="course">
-            <div class="course-row-top">
-                <div class="course-col">
-                    <div class="course-title">
-                        Название курса
-                    </div>
-                    <div class="course-description">
-                        Описание курса
-                    </div>
-                </div>
-                <div class="course-icon">
-                    <img src="{% static 'pictures/default-course-icon.png' %}" class="course-icon-img">
-                </div>
-            </div>
-            <div class="course-row-bot">
-                <div class="course-max-point">
-                    098
-                </div>
-                <button class="course-open">
-                    Открыть курс
-                </button>
-            </div>
-        </div>
-        <div class="course">
-            <div class="course-row-top">
-                <div class="course-col">
-                    <div class="course-title">
-                        Название курса
-                    </div>
-                    <div class="course-description">
-                        Описание курса
-                    </div>
-                </div>
-                <div class="course-icon">
-                    <img src="{% static 'pictures/default-course-icon.png' %}" class="course-icon-img">
-                </div>
-            </div>
-            <div class="course-row-bot">
-                <div class="course-max-point">
-                    098
-                </div>
-                <button class="course-open">
-                    Открыть курс
-                </button>
-            </div>
-        </div>
-        <div class="course">
-            <div class="course-row-top">
-                <div class="course-col">
-                    <div class="course-title">
-                        Название курса
-                    </div>
-                    <div class="course-description">
-                        Описание курса
-                    </div>
-                </div>
-                <div class="course-icon">
-                    <img src="{% static 'pictures/default-course-icon.png' %}" class="course-icon-img">
-                </div>
-            </div>
-            <div class="course-row-bot">
-                <div class="course-max-point">
-                    098
-                </div>
-                <button class="course-open">
-                    Открыть курс
-                </button>
-            </div>
-        </div>
-        <div class="course">
-            <div class="course-row-top">
-                <div class="course-col">
-                    <div class="course-title">
-                        Название курса
-                    </div>
-                    <div class="course-description">
-                        Описание курса
-                    </div>
-                </div>
-                <div class="course-icon">
-                    <img src="{% static 'pictures/default-course-icon.png' %}" class="course-icon-img">
-                </div>
-            </div>
-            <div class="course-row-bot">
-                <div class="course-max-point">
-                    098
-                </div>
-                <button class="course-open">
-                    Открыть курс
-                </button>
-            </div>
-        </div>
-        <div class="course">
-            <div class="course-row-top">
-                <div class="course-col">
-                    <div class="course-title">
-                        Название курса
-                    </div>
-                    <div class="course-description">
-                        Описание курса
-                    </div>
-                </div>
-                <div class="course-icon">
-                    <img src="{% static 'pictures/default-course-icon.png' %}" class="course-icon-img">
-                </div>
-            </div>
-            <div class="course-row-bot">
-                <div class="course-max-point">
-                    098
-                </div>
-                <button class="course-open">
-                    Открыть курс
-                </button>
-            </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <div class="add-courses-row">
@@ -235,6 +51,9 @@
         Больше курсов
     </button>
 </div>
-
-
 {% endblock main-window %}
+
+{% block scripts %}
+<script charset="UTF-8" src="{% static 'js/catalog.js' %}"></script>
+{% endblock scripts %}
+
