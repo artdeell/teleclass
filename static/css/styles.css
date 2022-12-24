@@ -54,6 +54,7 @@ footer{
     color: white;
     font-size: large;
     text-align: center;
+    height: 300px;
 }
 
 /* cols */
@@ -245,13 +246,13 @@ button.add-courses{
 }
 
 .course{
-    flex: 0 1 350px;
+    flex: 1 1 330px;
     background: white;
     border: 1px solid rgb(214 214 214);
     border-radius: 15px;
     height: 225px;
     flex-wrap: wrap;
-    margin: 15px 0;
+    margin: 15px;
 }
 
 .course-row-top{
