@@ -89,7 +89,7 @@ function autorizate(login = '', password=''){
             response =  JSON.parse(request.responseText)
             number_user = response['number']
             type_user = response['type']
-            window.location.href = 'http://'+window.location.host+'auth/'//указать урл перенаправления
+            window.location.href = `http://${window.location.host}/catalog/${number_user}/`//указать урл перенаправления
         }
         if(request.status == 400){
             error = JSON.parse(request.responseText)['error']

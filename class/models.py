@@ -15,6 +15,21 @@ class Parent(models.Model):
     def __str__(self):
         return str(f"{self.name}<->{self.surname}")
 
+class Pizda(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    name = models.TextField('Имя')
+    surname = models.TextField('Фамилия')
+    patronymic = models.TextField('Отчество')
+    login = models.TextField('Логин')
+    password = models.TextField('Пароль')
+
+    class Meta:
+        verbose_name = "Родитель"
+        verbose_name_plural = "Родители"
+
+    def __str__(self):
+        return str(f"{self.name}<->{self.surname}")        
+
 class Child(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.TextField('Имя')
