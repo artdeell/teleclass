@@ -52,6 +52,20 @@ class Сourses(APIView):
 class TakeCourse(APIView):
     def post(self, request, id):
         cours = search_obj(Course, name=request.data['name'])[0]
+        search = search_obj(Course, **request.data)
+        response = {'len':len(search)}
+        for i in range(len(search)):
+            response[i] = {
+                'id':search[i].id,
+                'name':search[i].name,
+                'points':search[i].max_mark,
+                'description':search[i].description
+            }
+        return Response(response)
+
+class TakeCourse(APIView):
+    def post(self, request, id):
+        cours = search_obj(Course, id=request.data['id'])[0]
         if request.data['user_type']=='chlid':
             child = search_obj(Child, id=id)
             if len(search_obj(ActualCourse, child=child))>0:
@@ -61,6 +75,7 @@ class TakeCourse(APIView):
             for task in tasks:
                 create_obj(ActualTask, actual_course=act_cours, task=task, mark=task.mark, time=0, count=0, status=False)
             return Response({id: act_cours.id}, status=status.HTTP_200_OK)
+        # return Response(status=status.HTTP_200_OK)
                 
 class SearchChild(APIView):
     def get(self, request, id):
@@ -91,3 +106,4 @@ class TaskInfo(APIView):
         task = search_obj(Task, course=course, number=number)
         variants = search_obj(Variant, task=task)[0]
         return Response(serializers.serialize('json', variants))
+

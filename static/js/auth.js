@@ -59,13 +59,14 @@ teacher_btn.addEventListener('click', function(){
     child_btn.style.color = "rgb(31 34 41)"
 })
 
-document.querySelector("button.auth-big#create-acc").addEventListener('click', registration())
-document.querySelector("button.auth-big#auth").addEventListener('click', auth())
+
+document.querySelector("button.auth-big#create-acc").addEventListener('click', registration)
+document.querySelector("button.auth-big#auth").addEventListener('click', auth)
 
 function auth(login = '', password=''){
     if(login=='' || password==''){
-        login = document.getElementById('phone').value
-        password = document.getElementById('password').value
+        login = document.querySelector('input.auth#auth-phone').value
+        password = document.querySelector('input.auth#auth-password').value
     }
     const request = new XMLHttpRequest();
     const url = `${window.location.origin}/api/authorizations`;
@@ -80,7 +81,7 @@ function auth(login = '', password=''){
             response =  JSON.parse(request.responseText)
             number_user = response['number']
             type_user = response['type']
-            window.location.href = 'http://'+window.location.host+'auth/'//указать урл перенаправления
+            window.location.href = 'http://'+window.location.host+'/catalog/'+number_user+'/'//указать урл перенаправления
         }
         if(request.status == 400){
             error = JSON.parse(request.responseText)['error']
@@ -100,8 +101,8 @@ function registration(){
     data['name'] = document.getElementById('name').value
     data['surname'] = document.getElementById('surname').value
     data['patronymic'] = document.getElementById('patronymic').value
-    data['login'] = document.getElementById('phone').value
-    data['password'] = document.getElementById('password').value
+    data['login'] = document.getElementById('reg-phone').value
+    data['password'] = document.getElementById('reg-password').value
     data['user_type'] = statuses[status_]
     if (data['password'] != document.getElementById('password-repeat').value){
         // отобразить что пароли не совпадают
