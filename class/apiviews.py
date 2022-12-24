@@ -3,7 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.core import serializers
-
+from .views import *
+from django.shortcuts import redirect 
 
 from .globalFunction import *
 from .models import *

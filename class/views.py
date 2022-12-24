@@ -12,7 +12,7 @@ def catalog(request):
         'catalog': catalog
         })
     
-def course(request, course_id = 4):
+def course(request, course_id):
     course = Course.objects.filter(id=course_id)[0]
     tasks = Task.objects.filter(course=course)
     answer_options = []
