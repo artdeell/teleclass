@@ -5,83 +5,96 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/styless.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>{{title}}</title>
 </head>
-<body>
-    <div class="screen-row" id="auth">
-        <div class="col" id="auth-left">
-            <img class="logo-teleclass"src="{% static 'pictures/teleclass.png' %}" alt="" width="700px">
-            <div class="logo-description">ТелеКласс - удобный
-                сервис цифрового
-                образования для
-                учителей, учеников
-                и их родителей
-            </div>
+<body id="auth">
+    <div class="background">
+        <img class="background" src="{% static 'pictures/background.png' %}"></img>
+    </div>
+    <div class="main-window">
+        <div class="logo-row">
+            <img src="{% static 'pictures/teleclass.png' %}" class="auth-logo">
         </div>
-        <div class="col" id="auth-right">
-            <div class="registration-form">
-                <div class="auth-input-form">
-                    <label for="auth.name">Имя</label>
-                    <input type="text" class="auth.name" id="name">
-                    <span class="error-text">Необходимо ввести имя</span>
-                </div>
-                <div class="auth-input-form">
-                    <label for="auth.surname">Фамилия</label>
-                    <input type="text" class="auth.surname" id="surname">
-                    <span class="error-text">Необходимо ввести фамилию</span>
-                </div>
-                <div class="auth-input-form">
-                    <label for="auth.patronymic">Отчество</label>
-                    <input type="text" class="auth.patronymic" id="patronymic">
-                    <span class="error-text">Необходимо ввести отчество</span>
-                </div>
-                <div class="auth-input-form">
-                    <label for="auth.phone">Номер телефона</label>
-                    <input type="text" class="auth.phone" id="phone">
-                    <span class="error-text">Необходимо ввести номер телефона</span>
-                </div>
-                <div class="auth-input-form">
-                    <label for="auth.password">Пароль</label>
-                    <input type="password" class="auth.phone" id="password">
-                    <span class="error-text">Необходимо ввести пароль</span>
-                </div>
-                <div class="auth-input-form">
-                    <label for="auth.password-repeat">Повтор пароля</label>
-                    <input type="password" class="auth.phone" id="pass-repeat">
-                    <span class="error-text">Необходимо ввести повтор пароля</span>
-                </div>
-                <div class="auth-input-form">
-                    <label for="auth.user-type">Кто вы?</label>
-                    <div type="row" class="auth.user-type">
-                        <button class="small" id="user-type-child">Ученик</button>
-                        <button class="small" id="user-type-parent">Родитель</button>
-                        <button class="small" id="user-type-teacher">Учитель</button>
-                    </div>
-                    <span class="error-text">Необходимо ввести повтор пароля</span>
-                </div>
-                <button onclick="registrations()">Создать аккаунт и войти</but>
-                <button id="have-account">У меня уже есть аккаунт</but>
+        <div class="auth-row">
+            <div class="auth-col">
+                <img src="{% static 'pictures/child.png' %}" id="child">
             </div>
-            <div class="login-form">
-                <div class="auth-input-form">
-                    <label for="auth.phone">Номер телефона</label>
-                    <input type="text" class="auth.phone">
-                    <span class="error-text">Необходимо ввести номер телефона</span>
+            <div class="auth-col" id="reg">
+                <div class="auth-inputs-row">
+                    <label for="name" class="auth">Имя</label>
+                    <input type="text" class="auth" id="name">
+                    <div class="auth-input-icon">
+                        
+                    </div>
                 </div>
-                <div class="auth-input-form">
-                    <label for="auth.phone">Пароль</label>
-                    <input type="text" class="auth.phone">
-                    <span class="error-text">Необходимо ввести номер телефона</span>
+                <div class="auth-inputs-row">
+                    <label for="surname" class="auth">Фамилия</label>
+                    <input type="text" class="auth" id="surname">
+                    <div class="auth-input-icon">
+                        
+                    </div>
                 </div>
-                <button>Войти</but>
-                <button id="not-have-account">У меня еще нет аккаунта</but>
+                <div class="auth-inputs-row">
+                    <label for="patronymic" class="auth">Отчество</label>
+                    <input type="text" class="auth" id="patronymic">
+                    <div class="auth-input-icon">
+                        
+                    </div>
+                </div>
+                <div class="auth-inputs-row">
+                    <label for="phone" class="auth">Номер телефона</label>
+                    <input type="text" class="auth" id="phone">
+                    <div class="auth-input-icon">
+                        
+                    </div>
+                </div>
+                <div class="auth-inputs-row">
+                    <label for="password" class="auth">Пароль</label>
+                    <input type="password" class="auth" id="password">
+                    <div class="auth-input-icon">
+                        
+                    </div>
+                </div>
+                <div class="auth-inputs-row">
+                    <label for="password-repeat" class="auth">Повтор пароля</label>
+                    <input type="password" class="auth" id="password-repeat">
+                    <div class="auth-input-icon">
+                        
+                    </div>
+                </div>
+                <label for="auth-buttons-row" class="auth-buttons">Кто вы?</label>
+                <div class="auth-buttons-row">
+                    <button class="auth-user-type" id="child">Ученик</button>
+                    <button class="auth-user-type" id="parent">Родитель</button>
+                    <button class="auth-user-type" id="teacher">Учитель</button>
+                </div>
+                <button class="auth-big" id="create-acc">Создать аккаунт</button>
+                <button class="auth-big" id="have-acc">У меня уже аккаунт</button>
+            </div>
+            <div class="auth-col"id="auth">
+                <div class="auth-inputs-row">
+                    <label for="phone" class="auth">Номер телефона</label>
+                    <input type="text" class="auth" id="phone">
+                    <div class="auth-input-icon">
+                        
+                    </div>
+                </div>
+                <div class="auth-inputs-row">
+                    <label for="password" class="auth">Пароль</label>
+                    <input type="password" class="auth" id="password">
+                    <div class="auth-input-icon">
+                        
+                    </div>
+                </div>
+                <button class="auth-big" id="auth">Войти</button>
+                <button class="auth-big" id="have-not-acc">У меня еще нет аккаунта</button>
             </div>
         </div>
     </div>
-    <img class = "absolute-img"src="{% static 'pictures/child.png' %}" alt="EBLAN">
-
-    <script charset="UTF-8" src="{% static 'js/auth.js' %}"></script>
-
 </body>
-</html>
+<footer>
+    ТУТ МОГЛА БЫТЬ ВАША РЕКЛАМА
+</footer>
+<script charset="UTF-8" src="{% static 'js/auth.js' %}"></script>

@@ -3,7 +3,7 @@
 @font-face {
     font-family: "serif-bold";
     font-style: normal;
-    font-weight: 700;
+    font-weight: 600;
     src: url("./fonts/tele2_displayserif-bold.woff");
 }
 @font-face {
@@ -15,7 +15,7 @@
 @font-face {
     font-family: "sans-bold";
     font-style: normal;
-    font-weight: 700;
+    font-weight: 600;
     src: url("./fonts/tele2_textsans-bold.woff");
 }
 @font-face {
@@ -42,6 +42,10 @@ body {
     user-select: none;
     color: rgb(31 34 41);
     padding-top: 45px;
+}
+
+body#auth {
+    padding-top: 0;
 }
 
 /* footer */
@@ -117,7 +121,7 @@ p{
     display: flex;
     flex-direction: column;
     min-width: 100vw;
-    min-height: 100vh;
+    min-height: 100%;
     z-index: -1;
 }
 
@@ -455,6 +459,7 @@ input.answer-option{
     font-family: sans-regular;
     font-size: 18px;
 }
+
 button.end-course{
     margin: 15px 0;
     width: 59%;
@@ -463,4 +468,108 @@ button.end-course{
     border: 0;
     background-color: rgba(65 166 116);
     font-size: 24px;
+}
+
+/* Auth */
+.logo-row{
+    display: flex;
+    justify-content: center;
+    flex: 0, 1, 100%
+}
+
+img.auth-logo{
+    width: 90%;
+}
+
+.auth-row{
+    display: flex;
+    flex-flow: row wrap-reverse;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+}
+
+.auth-col{
+    display: inline-flex;
+    flex-flow: column;
+    flex: 0 1 50%;
+    align-items: center;
+    margin-top: 30px;
+}
+
+
+img#child{
+    width: 70%;
+    height: 70%;
+}
+
+.auth-inputs-row{
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    width: 500px;
+    align-items: center;
+    margin: 15px 0;
+}
+.auth-col#auth{
+    display: none;
+}
+
+input.auth{
+    width: 300px;
+    height: 30px;
+    padding-left: 30px;
+    font-size: 24px;
+    vertical-align: bottom;
+}
+
+label.auth{
+    width: 330px;
+}
+
+.auth-input-icon{
+    position: absolute;
+    left: 90px;
+    top: 27px;
+    font-size: 22px;
+    font-family: icons;
+}
+
+label.auth-buttons{
+    width: 330px;
+    text-align: start;
+}
+
+.auth-buttons-row{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    width: 334px;
+    margin-bottom: 15px;
+}
+
+button.auth-user-type{
+    background-color: white;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid;
+    color: rgb(31 34 41);
+}
+
+button.auth-user-type#child{
+    background-color: rgb(31 34 41);
+    color: white;
+}
+
+button.auth-big{
+    width: 334px;
+    height: 38px;
+    border-radius: 5px;
+    border: 1px solid;
+    background-color: rgb(31 34 41);
+    color: white;
+    margin-bottom: 10px;
 }

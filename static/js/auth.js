@@ -1,11 +1,8 @@
-have_account = document.querySelector("button#have-account")
-not_have_account = document.querySelector("button#not-have-account")
-login_form = document.querySelector(".login-form")
-registration_form = document.querySelector(".registration-form")
+have_account = document.querySelector("button.auth-big#have-acc")
+not_have_account = document.querySelector("button#have-not-acc")
 
-registration_form.style.display = "none"
-login_form.style.display = "flex"
-login_form.style.flexDirection = "column"
+login_form = document.querySelector(".auth-col#auth")
+registration_form = document.querySelector(".auth-col#reg")
 
 have_account.addEventListener('click', function(){
     registration_form.style.display = "none"
@@ -19,20 +16,11 @@ not_have_account.addEventListener('click', function(){
 })
 
 
-child_btn = document.querySelector("button.small#user-type-child")
-parent_btn = document.querySelector("button.small#user-type-parent")
-teacher_btn = document.querySelector("button.small#user-type-teacher")
-var status_ = 0
+child_btn = document.querySelector("button.auth-user-type#child")
+parent_btn = document.querySelector("button.auth-user-type#parent")
+teacher_btn = document.querySelector("button.auth-user-type#teacher")
 
-child_btn.style.borderColor = "white"
-child_btn.style.background = "rgb(31 34 41)"
-child_btn.style.color = "white"
-parent_btn.style.borderColor = "rgb(31 34 41)"
-parent_btn.style.background = "white"
-parent_btn.style.color = "rgb(31 34 41)"
-teacher_btn.style.borderColor = "rgb(31 34 41)"
-teacher_btn.style.background = "white"
-teacher_btn.style.color = "rgb(31 34 41)"
+var status_ = 0
 
 child_btn.addEventListener('click', function(){
     status_ = 0
@@ -71,7 +59,10 @@ teacher_btn.addEventListener('click', function(){
     child_btn.style.color = "rgb(31 34 41)"
 })
 
-function autorizate(login = '', password=''){
+document.querySelector("button.auth-big#create-acc").addEventListener('click', registration())
+document.querySelector("button.auth-big#auth").addEventListener('click', auth())
+
+function auth(login = '', password=''){
     if(login=='' || password==''){
         login = document.getElementById('phone').value
         password = document.getElementById('password').value
@@ -99,7 +90,7 @@ function autorizate(login = '', password=''){
     }
 }
 
-function registrations(){
+function registration(){
     const request = new XMLHttpRequest();
     const url = `${window.location.origin}/api/registrations`;
     request.open('POST', url, true);
@@ -112,7 +103,7 @@ function registrations(){
     data['login'] = document.getElementById('phone').value
     data['password'] = document.getElementById('password').value
     data['user_type'] = statuses[status_]
-    if (data['password'] != document.getElementById('pass-repeat').value){
+    if (data['password'] != document.getElementById('password-repeat').value){
         // отобразить что пароли не совпадают
         return
     }
@@ -123,7 +114,7 @@ function registrations(){
     request.send(JSON.stringify(data))
     request.onload = ()=>{
         if(request.status == 200){
-            autorizate()
+            auth()
         }
         if (request.status == 400){
             error = JSON.parse(request.responseText)['error']
