@@ -19,8 +19,8 @@ class Statistic(models.Model):
     student = models.OneToOneField(Student, on_delete=models.PROTECT, primary_key=False)
 
     class Meta:
-        verbose_name = "Ученик"
-        verbose_name_plural = "Ученики"
+        verbose_name = "Статистика"
+        verbose_name_plural = "Статистика"
 
     def __str__(self):
         return str(f"{self.surname}<->{self.name}")
