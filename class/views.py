@@ -20,7 +20,7 @@ def course(request, course_id = 4):
         for answer_option in AnswerOption.objects.filter(task=task):
             answer_options.append(answer_option)
     return render(request, 'course.html',  {
-        'title': 'Каталог',
+        'title': course.title,
         'course': course,
         'tasks': tasks,
         'answer_options': answer_options
