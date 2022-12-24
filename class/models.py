@@ -1,116 +1,129 @@
 from django.db import models
 
+class Student(models.Model):
+    surname = models.TextField('Фамилия')
+    name = models.TextField('Имя')
+    patronymic = models.TextField('Отчество')
+    phone = models.TextField('Номер телефона')
+    password = models.TextField('Пароль')
+
+    class Meta:
+        verbose_name = "Ученик"
+        verbose_name_plural = "Ученики"
+
+    def __str__(self):
+        return str(f"{self.surname}<->{self.name}")
+
+class Statistic(models.Model):
+    student = models.OneToOneField(Student, on_delete=models.PROTECT, primary_key=False)
+
+    class Meta:
+        verbose_name = "Ученик"
+        verbose_name_plural = "Ученики"
+
+    def __str__(self):
+        return str(f"{self.surname}<->{self.name}")
+
 class Parent(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    name = models.TextField('Имя')
     surname = models.TextField('Фамилия')
+    name = models.TextField('Имя')
     patronymic = models.TextField('Отчество')
-    login = models.TextField('Логин')
+    phone = models.TextField('Номер телефона')
     password = models.TextField('Пароль')
+    
 
     class Meta:
         verbose_name = "Родитель"
         verbose_name_plural = "Родители"
 
     def __str__(self):
-        return str(f"{self.name}<->{self.surname}")
+        return str(f"{self.surname}<->{self.name}")
 
-class Pizda(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    name = models.TextField('Имя')
-    surname = models.TextField('Фамилия')
-    patronymic = models.TextField('Отчество')
-    login = models.TextField('Логин')
-    password = models.TextField('Пароль')
+class ParentStudent(models.Model):
+    parent = models.ForeignKey(Parent, on_delete=models.CASCADE, null=False)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, null=False)
 
     class Meta:
-        verbose_name = "Родитель"
-        verbose_name_plural = "Родители"
+        verbose_name = "РодительУченик"
+        verbose_name_plural = "РодителиУченики"
 
     def __str__(self):
-        return str(f"{self.name}<->{self.surname}")        
-
-class Child(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    name = models.TextField('Имя')
-    surname = models.TextField('Фамилия')
-    patronymic = models.TextField('Отчество')
-    login = models.TextField('Логин')
-    password = models.TextField('Пароль')
-    parent = models.ForeignKey(Parent, on_delete=models.CASCADE, null=True)
-
-    class Meta:
-        verbose_name = "Ребёнок"
-        verbose_name_plural = "Дети"
-
-    def __str__(self):
-        return str(f"{self.name}<->{self.surname}")
+        return str(f"{self.parent}<->{self.student}")
 
 class Course(models.Model):
-    name = models.TextField('Название')
-    max_mark = models.IntegerField('Максимальное количество баллов')
+    title = models.TextField('Название')
     description = models.TextField('Описание')
+    progress = models.TextField('Прогресс')
+    max_point = models.TextField('Максимальный балл')
+    theory = models.TextField('Теория')
 
     class Meta:
         verbose_name = "Курс"
         verbose_name_plural = "Курсы"
 
     def __str__(self):
-        return str(f"{self.name}")
+        return str(f"{self.title}<->{self.max_point}")
 
 class Task(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    number = models.IntegerField("Номер задания")
-    name = models.TextField('Название задания')
-    mark = models.IntegerField("Максимальный балл")
-    description = models.TextField("Описание задания")
-    type = models.IntegerField('Тип задания')
-    img = models.ImageField("Картинка задания")
+    number = models.TextField('Номер')
+    type = models.TextField('Тип')
+    point = models.TextField('Балл')
+    text = models.TextField('Текст задания')
+    picture = models.ImageField('Картинка')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=False)
 
     class Meta:
         verbose_name = "Задание"
         verbose_name_plural = "Задания"
 
     def __str__(self):
-        return str(f"{self.name}")
+        return str(f"{self.number}<->{self.type}")
 
-
-
-class ActualCourse(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    mark = models.IntegerField('Количество баллов')
-    child = models.ForeignKey(Child, on_delete=models.CASCADE)
+class AnswerOption(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, null=False)
+    text = models.TextField('Текст')
+    is_right = models.BooleanField('Правильный')
 
     class Meta:
-        verbose_name = "Акутаальный курс"
-        verbose_name_plural = "Акутальные курсы"
+        verbose_name = "Задание"
+        verbose_name_plural = "Задания"
 
     def __str__(self):
-        return str(f"{self.name}")
-        
-class ActualTask(models.Model):
-    actual_course = models.ForeignKey(ActualCourse, on_delete=models.CASCADE)
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    mark = models.IntegerField("Количество баллов")
-    time = models.TimeField('Время выполнеия задания')
-    count = models.IntegerField('Количество ответов')
-    status = models.BooleanField('Статус выполнения')
+        return str(f"{self.is_right}<->{self.text}")
+
+class TaskStatistic(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, null=False)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, null=False)
+    is_right = models.BooleanField('Правильность решения')
 
     class Meta:
-        verbose_name = "Акутальное задание"
-        verbose_name_plural = "Акутальные задания"
+        verbose_name = "Статистика задания"
+        verbose_name_plural = "Статистика заданий"
 
     def __str__(self):
-        return str(f"{self.name}<->{self.task}")
+        return str(f"{self.task}<->{self.student}<->{self.is_right}")
 
-class Variant(models.Model):
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    text = models.TextField('Текст варианта')
-    status = models.BooleanField('Правильность варианта')
+class StudentCourse(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, null=False)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=False)
 
     class Meta:
-        verbose_name = "Выарианет ответа"
-        verbose_name_plural = "Варианты ответов"
+        verbose_name = "УченикКурс"
+        verbose_name_plural = "УченикиКурсы"
 
     def __str__(self):
-        return str(f"{self.task}<->{self.status}")
+        return str(f"{self.student}<->{self.course}")
+
+class Teacher(models.Model):
+    surname = models.TextField('Фамилия')
+    name = models.TextField('Имя')
+    patronymic = models.TextField('Отчество')
+    phone = models.TextField('Номер телефона')
+    password = models.TextField('Пароль')
+
+    class Meta:
+        verbose_name = "Учитель"
+        verbose_name_plural = "Учителя"
+
+    def __str__(self):
+        return str(f"{self.surname}<->{self.name}")
