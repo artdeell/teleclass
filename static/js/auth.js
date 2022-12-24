@@ -73,20 +73,21 @@ function auth(login = '', password=''){
     request.open('POST', url, true);
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     var data = {}
-    data['login'] = login
+    data['phone'] = login
     data['password'] = password
     request.send(JSON.stringify(data))
     request.onload = ()=>{
         if(request.status == 200){
             response =  JSON.parse(request.responseText)
-            number_user = response['number']
-            type_user = response['type']
-            window.location.href = 'http://'+window.location.host+'/catalog/'+number_user+'/'//указать урл перенаправления
+            number_user = ''+response['id']
+            type_user = response['type_user']
+            if(type_user == 'student'){
+                window.location.href = 'http://'+window.location.host+'/catalog/'+number_user+'/'
+            }
         }
         if(request.status == 400){
             error = JSON.parse(request.responseText)['error']
             console.log(error)
-            // отобразить что пользователь с таким логином уже существует (текст ошибки в переменной)
         }
     }
 }
@@ -97,29 +98,25 @@ function registration(){
     request.open('POST', url, true);
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     var data = {}
-    statuses = ['child', 'parent', 'teacher']
+    statuses = ['student', 'parent', 'teacher']
     data['name'] = document.getElementById('name').value
     data['surname'] = document.getElementById('surname').value
     data['patronymic'] = document.getElementById('patronymic').value
-    data['login'] = document.getElementById('reg-phone').value
+    data['phone'] = document.getElementById('reg-phone').value
     data['password'] = document.getElementById('reg-password').value
     data['user_type'] = statuses[status_]
     if (data['password'] != document.getElementById('password-repeat').value){
-        // отобразить что пароли не совпадают
-        return
-    }
-    if (data['user_type'] == ''){
-        // отобразить что нужно выбрать статус
+        alert('Поля "Пароль" и "Подтверждение пароля" не совпадают')
         return
     }
     request.send(JSON.stringify(data))
     request.onload = ()=>{
         if(request.status == 200){
-            auth()
+            auth(data['phone'], data['password'])
         }
         if (request.status == 400){
             error = JSON.parse(request.responseText)['error']
-            // отобразить что пользователь с таким логином уже существует (текст ошибки в переменной)
+            alert(error)
         }
     }
 }
