@@ -6,7 +6,7 @@ def auth(request):
     return render(request, 'auth.html', {'title': 'Авторизация'})
 
 def catalog(request):
-    catalog = Course.objects.all().order_by()
+    catalog = Course.objects.all().order_by('-creation_date')
     return render(request, 'catalog.html', {'title': 'Каталог', 'catalog': catalog})
     
 def course(request):
