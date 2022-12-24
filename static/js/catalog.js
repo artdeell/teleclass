@@ -41,26 +41,27 @@ window.onload = function () {
                 `
             }
         }
-        // pizdos()
+        pizdos()
     }
 }
-// function pizdos() {
-//     document.querySelectorAll("button.course-open").forEach(button => {
-//         button.addEventListener('click', OpenCourse)
-//         console.log(button)
-//     })
-// }
+function pizdos() {
+    document.querySelectorAll("button.course-open").forEach(button => {
+        button.addEventListener('click', OpenCourse)
+        console.log(button)
+    })
+}
 
 
-function OpenCourse(button) {
+function OpenCourse() {
     const request = new XMLHttpRequest();
-    const url = `${window.location.origin}/api/authorizations`;
+    const url = `${window.location.origin}/api/courses/${window.location.pathname.replace(/[^0-9]/g,"")}/take`;
+    
     request.open('POST', url, true);
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     data = {
-        'id': Number(button.id)
+        'user_type': 'child',
+        'id': 1
     }
-    console.log(data)
     request.send(JSON.stringify(data))
     request.onload = () => {
         console.log(request.response)
