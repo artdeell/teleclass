@@ -6,7 +6,7 @@ from . import apiviews
 
 urlpatterns = [
     # path('', views.auth),
-    # path('catalog/<int:id>/', views.catalog),
+    path('catalog/', views.catalog),
     # path('api/authorizations', apiviews.Autorizations.as_view()),
     # path('api/registrations', apiviews.Registraton.as_view()),
     # path('api/courses/<int:id>/list', apiviews.Сourses.as_view()),

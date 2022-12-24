@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Student(models.Model):
     surname = models.TextField('Фамилия')
@@ -18,8 +19,8 @@ class Statistic(models.Model):
     student = models.OneToOneField(Student, on_delete=models.PROTECT, primary_key=False)
 
     class Meta:
-        verbose_name = "Ученик"
-        verbose_name_plural = "Ученики"
+        verbose_name = "Статистика"
+        verbose_name_plural = "Статистика"
 
     def __str__(self):
         return str(f"{self.surname}<->{self.name}")
@@ -56,13 +57,14 @@ class Course(models.Model):
     progress = models.TextField('Прогресс')
     max_point = models.TextField('Максимальный балл')
     theory = models.TextField('Теория')
+    creation_date = models.DateTimeField('Дата создания')
 
     class Meta:
         verbose_name = "Курс"
         verbose_name_plural = "Курсы"
 
     def __str__(self):
-        return str(f"{self.title}<->{self.max_point}")
+        return str(f"{self.title}<->{self.creation_date}")
 
 class Task(models.Model):
     number = models.TextField('Номер')
@@ -85,8 +87,8 @@ class AnswerOption(models.Model):
     is_right = models.BooleanField('Правильный')
 
     class Meta:
-        verbose_name = "Задание"
-        verbose_name_plural = "Задания"
+        verbose_name = "Вариант ответа"
+        verbose_name_plural = "Варианты ответов"
 
     def __str__(self):
         return str(f"{self.is_right}<->{self.text}")
