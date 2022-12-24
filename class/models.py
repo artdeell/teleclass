@@ -87,8 +87,8 @@ class AnswerOption(models.Model):
     is_right = models.BooleanField('Правильный')
 
     class Meta:
-        verbose_name = "Задание"
-        verbose_name_plural = "Задания"
+        verbose_name = "Вариант ответа"
+        verbose_name_plural = "Варианты ответов"
 
     def __str__(self):
         return str(f"{self.is_right}<->{self.text}")
