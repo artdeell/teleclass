@@ -7,7 +7,6 @@ add_courses_button = document.querySelector("button.add-courses")
 window.onload = function () {
     const request = new XMLHttpRequest();
     const url = `${window.location.origin}/api/courses/${window.location.pathname.replace("/catalog/", "")}list`;
-
     console.log(url)
     request.open('GET', url, true);
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -20,7 +19,7 @@ window.onload = function () {
     }
 
     add_courses_button.addEventListener('click', RenderCourses)
-
+    pizdos()
 }
 
 function RenderCourses() {
@@ -95,5 +94,29 @@ function RenderCourses() {
                 `
         }
         add_courses_button.style.display = "none"
+    }
+}
+
+function pizdos() {
+    document.querySelectorAll("button.course-open").forEach(button => {
+        button.addEventListener('click', OpenCourse)
+        console.log(button)
+    })
+}
+
+
+function OpenCourse() {
+    const request = new XMLHttpRequest();
+    const url = `${window.location.origin}/api/courses/${window.location.pathname.replace(/[^0-9]/g,"")}/take`;
+    
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    data = {
+        'user_type': 'child',
+        'id': 1
+    }
+    request.send(JSON.stringify(data))
+    request.onload = () => {
+        console.log(request.response)
     }
 }
