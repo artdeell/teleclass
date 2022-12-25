@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block nav-panel-buttons %}
-<a href="" class="nav-menu">Сменить аккаунт</a>
+<a class="nav-menu" id="logout">Сменить аккаунт</a>
 {% endblock nav-panel-buttons %}
 
 {% block user-full-name %}
@@ -40,13 +40,15 @@
         {% endif %}
     </div>
 </div>
+{% if child %}
 <h1>Статистика</h1>
 {% if statistic %}
 {% for child_statistic in statistic %}
 {{child_statistic}}
 {% endfor %}
 {% else %}
-<h2 class="without-margin">У вас пока что нет статистики :(</h2>
+<h2 class="without-margin">У ваших детей пока что нет статистики :(</h2>
+{% endif %}
 {% endif %}
 {% endblock user-info %}
 
