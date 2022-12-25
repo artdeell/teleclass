@@ -1,6 +1,10 @@
 {% extends 'personal-office.html' %}
 {% load static %}
 
+{% block nav-panel-buttons %}
+<a href="" class="nav-menu">Сменить аккаунт</a>
+{% endblock nav-panel-buttons %}
+
 {% block user-full-name %}
 {{teacher.surname}} {{teacher.name}} {{teacher.patronymic}}
 {% endblock user-full-name %}
@@ -13,7 +17,6 @@
 
 
 {% block user-info %}
-
 <div class="my-courses">
     <div class="my-courses-row">
         <h1>Мои курсы</h1>
@@ -51,6 +54,79 @@
         {% else %}
         <h2 class="without-margin">У вас пока что нет курсов :(</h2>
         {% endif %}
+    </div>
+</div>
+<div class="create-course">
+    <div class="create-course-row">
+        <div class="create-course-col">
+            <div class="create-course-title-row">
+                Создание курса
+            </div>
+            <div class="border-gray"></div>
+            <div class="create-course-steps">
+                <div class="create-course-steps-row">
+                    <button class="create-course-step" id="theory">
+                        <div class="create-course-step-title">
+                            Т
+                        </div>
+                    </button>
+                </div>
+                <button class="create-course-step" id="add-step">
+                    <div class="create-course-step-title">
+                        ╋
+                    </div>
+                </button>
+                <button class="create-course-step" id="remove-step">
+                    <div class="create-course-step-title">
+                        ╳
+                    </div>
+                </button>
+            </div>
+            <div class="create-course-theory">
+                <div class="create-course-theory-col">
+                    <div class="create-course-theory-title-row">
+                        Теория
+                    </div>
+                    <div class="create-course-theory-row">
+                        <textarea class="theory-content"
+                            placeholder="Пишите здесь теоретическую часть курса"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            {% for task in tasks %}
+            <div class="create-course-task" id={{task}}>
+                <div class="create-course-task-col">
+                    <div class="create-course-task-title-row">
+                        Задание {{task}}
+                    </div>
+                    <div class="create-course-task-row">
+                        <textarea class="task-text" placeholder="Пишите здесь текст задания"></textarea>
+                    </div>
+                    <div class="create-course-task-answers-options">
+                        <div class="create-course-task-answers-options-col">
+                            <div class="create-course-task-answers-options-title-row">
+                                Варианты ответов
+                            </div>
+                            <div class="create-course-task-answers-options-row">
+                                <div class="create-course-task-answer-option" id="1">
+                                    <input type="checkbox" id="1">
+                                    <textarea class="answer-option-text"
+                                        placeholder="Пишите здесь текст варианта ответа"></textarea>
+                                </div>
+                                <div class="create-course-task-answer-option" id="2">
+                                    <input type="checkbox" id="2">
+                                    <textarea class="answer-option-text"
+                                        placeholder="Пишите здесь текст варианта ответа"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-answer-option" id=2>Добавить вариант ответа</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock user-info %}

@@ -42,7 +42,7 @@ def course(request, course_id):
             'tasks': tasks,
             'answer_optiosns': answer_options
             })
-    return HttpResponseRedirect(request._current_scheme_host)
+    return HttpResponseRedirect(f'{request._current_scheme_host}/{type}/{id}')
 
 def personal_office_student(request, student_id=1):
     id = request.COOKIES.get('id')
@@ -97,9 +97,11 @@ def personal_office_teacher(request, teacher_id=1):
     if is_login == 'True' and id==teacher_id and type=='teacher':
         teacher = Teacher.objects.filter(id = teacher_id)[0]
         catalog = Course.objects.filter(teacher = teacher)
+        tasks = [1, 2, 3, 4, 5]
         return render(request, 'personal-office-teacher.html', {
             'title': 'Личный кабинет',
             'teacher': teacher,
-            'catalog': catalog
+            'catalog': catalog,
+            'tasks': tasks
             })
     return HttpResponseRedirect(request._current_scheme_host)
