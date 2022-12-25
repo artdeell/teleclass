@@ -12,21 +12,25 @@
     <div class="theory-row">
         <div class="theory-col">
             <div class="theory-title-row">
+                <div class="course-title">
+                    {{course.title}}
+                </div>
+                <button class="back-to-catalog">Назад к курсам</button>
+            </div>
+            <div class="theory-title-row">
                 <div class="theory-title">
                     Теория
                 </div>
-                <button class="back-to-catalog">Назад к курсам</button>
             </div>
             <div class="border-gray">
             </div>
             <div class="theory-content-row">
-                <p>Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции позволяет выполнить важные задания по разработке благоприятных перспектив. Каждый из нас понимает очевидную вещь: сложившаяся структура организации предопределяет высокую востребованность стандартных подходов. Современные технологии достигли такого уровня, что новая модель организационной деятельности создаёт предпосылки для форм воздействия. Безусловно, глубокий уровень погружения позволяет оценить значение модели развития. Также как укрепление и развитие внутренней структуры однозначно фиксирует необходимость существующих финансовых и административных условий. 
-                    Принимая 
-                    во внимание показатели успешности, глубокий уровень погружения предоставляет широкие возможности для новых принципов формирования материально-технической и кадровой базы. Однозначно, явные признаки победы институционализации призывают нас к новым свершениям, которые, в свою очередь, должны быть объединены в целые кластеры себе подобных. Картельные сговоры не допускают ситуации, при которой интерактивные прототипы лишь добавляют фракционных разногласий и обнародованы. Для современного мира дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки переосмысления внешнеэкономических политик! В своём стремлении повысить качество жизни, они забывают, что разбавленное изрядной долей эмпатии, рациональное мышление однозначно определяет каждого участника как способного принимать собственные решения касаемо направлений прогрессивного развития. Каждый из нас понимает очевидную вещь: новая модель организационной деятельности играет определяющее значение для благоприятных перспектив. И нет сомнений, что акционеры крупнейших компаний являются только методом политического участия и призваны к ответу. А также сделанные на базе интернет-аналитики выводы в равной степени предоставлены сами себе. Наше дело не так однозначно, как может показаться: граница обучения кадров не даёт нам иного выбора, кроме определения прогресса профессионального сообщества. Для современного мира внедрение современных методик требует от нас анализа первоочередных требований.</p>
+                <p>{{course.theory}}</p>
             </div>
         </div>
     </div>
 </div>
+{% for task in tasks %}
 <div class="practice">
     <div class="practice-row">
         <div class="practice-col">
@@ -35,79 +39,36 @@
                     Задание
                 </div>
                 <div class="practice-number">
-                    1
+                    {{task.number}}
                 </div>
             </div>
             <div class="border-gray">
             </div>
             <div class="practice-content-row">
-                <p>Самое глуппое задание которое я только видел</p>
+                <p>{{task.text}}</p>
             </div>
             <div class="border-gray"></div>
             <div class="practice-response-options-row">
+                {% for answer_option in answer_options %}
+                {% if answer_option.task == task %}
                 <div class="answer-option-row">
                     <input type="checkbox" class="answer-option">
                     <div class="answer-option-text">
-                        Вариант 1
+                        {{answer_option.text}}
                     </div>
                 </div>
-                <div class="answer-option-row">
-                    <input type="checkbox" class="answer-option">
-                    <div class="answer-option-text">
-                        Вариант 2
-                    </div>
-                </div>
-                <div class="answer-option-row">
-                    <input type="checkbox" class="answer-option">
-                    <div class="answer-option-text">
-                        Вариант 3
-                    </div>
-                </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
 </div>
-<div class="practice">
-    <div class="practice-row">
-        <div class="practice-col">
-            <div class="practice-title-row">
-                <div class="practice-title">
-                    Задание
-                </div>
-                <div class="practice-number">
-                    2
-                </div>
-            </div>
-            <div class="border-gray">
-            </div>
-            <div class="practice-content-row">
-                <p>Ещё одно самое глуппое задание которое я только видел</p>
-            </div>
-            <div class="border-gray"></div>
-            <div class="practice-response-options-row">
-                <div class="answer-option-row">
-                    <input type="checkbox" class="answer-option">
-                    <div class="answer-option-text">
-                        Вариант 1
-                    </div>
-                </div>
-                <div class="answer-option-row">
-                    <input type="checkbox" class="answer-option">
-                    <div class="answer-option-text">
-                        Вариант 2
-                    </div>
-                </div>
-                <div class="answer-option-row">
-                    <input type="checkbox" class="answer-option">
-                    <div class="answer-option-text">
-                        Вариант 3
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{% endfor %}
 <button class="end-course">
     Завершить тест
 </button>
 {% endblock main-window %}
+
+{% block scripts %}
+<script charset="UTF-8" src="{% static 'js/course.js' %}"></script>
+{% endblock scripts %}

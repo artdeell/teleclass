@@ -26,10 +26,10 @@
                 <div class="course-row-top">
                     <div class="course-col">
                         <div class="course-title">
-                            {{ course }}
+                            {{ course.title }}
                         </div>
                         <div class="course-description">
-                            Описание курса
+                            {{ course.description }}
                         </div>
                     </div>
                     <div class="course-icon">
@@ -38,15 +38,14 @@
                 </div>
                 <div class="course-row-bot">
                     <div class="course-max-point">
-                        098
+                        {{ course.max_point }}
                     </div>
-                    <button class="course-open">
+                    <button class="course-open" id = {{ course.id }}>
                         Открыть курс
                     </button>
                 </div>
             </div>
         {% endfor %}
-        
     </div>
 </div>
 <div class="add-courses-row">
