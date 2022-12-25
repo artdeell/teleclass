@@ -1028,3 +1028,14 @@ button.add-answer-option{
     border-radius: 5px;
     padding: 0 15px;
 }
+
+button.end-coure-create{
+    width: 95%;
+    height: 35px;
+    background-color: rgba(65 166 116);
+    border: 0;
+    border-radius: 5px;
+    padding: 0 15px;
+    margin: auto;
+    margin-bottom: 15px;
+}
