@@ -77,8 +77,14 @@ function auth(login = '', password=''){
     request.send(JSON.stringify(data))
     request.onload = ()=>{
         if(request.status == 200){
-            if(type_user == 'student'){
-                window.location.href = 'http://'+window.location.host+'/catalog/'+number_user+'/'
+            obj = {};
+            var cookies = document.cookie.split(/; /);
+            for (var i = 0, len = cookies.length; i < len; i++) {
+                var cookie = cookies[i].split(/=/);
+                obj[cookie[0]] = cookie[1];
+            }
+            if(obj['type'] == 'student'){
+                window.location.href = window.location.origin+'/catalog/'
             }
         }
         if(request.status == 400){
@@ -105,8 +111,10 @@ function registration(){
         alert('Поля "Пароль" и "Подтверждение пароля" не совпадают')
         return
     }
+    
     request.send(JSON.stringify(data))
     request.onload = ()=>{
+        console.log(data)
         if(request.status == 200){
             auth(data['phone'], data['password'])
         }
@@ -114,5 +122,18 @@ function registration(){
             error = JSON.parse(request.responseText)['error']
             alert(error)
         }
+    }
+}
+var obj = {};
+window.onload = ()=>{
+    obj = {};
+    var cookies = document.cookie.split(/; /);
+    for (var i = 0, len = cookies.length; i < len; i++) {
+        var cookie = cookies[i].split(/=/);
+        obj[cookie[0]] = cookie[1];
+    }
+    console.log(obj)
+    if (obj['is_login'] == 'True'){
+        window.location.href = `http://${window.location.host}/`
     }
 }

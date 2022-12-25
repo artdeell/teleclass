@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import *
 
+from .globalFunction import *
+
 # Create your views here.
 def auth(request):
     if 'is_login' in request.COOKIES and 'type' in request.COOKIES and 'id' in request.COOKIES:
@@ -20,18 +22,26 @@ def catalog(request):
         })
     
 def course(request, course_id):
-    course = Course.objects.filter(id=course_id)[0]
-    tasks = Task.objects.filter(course=course)
-    answer_options = []
-    for task in tasks:
-        for answer_option in AnswerOption.objects.filter(task=task):
-            answer_options.append(answer_option)
-    return render(request, 'course.html',  {
-        'title': course.title,
-        'course': course,
-        'tasks': tasks,
-        'answer_options': answer_options
-         })
+    id = request.COOKIES.get('id')
+    type = request.COOKIES.get('type')
+    is_login = request.COOKIES.get('is_login')
+    if is_login == 'True':
+        course = Course.objects.filter(id=course_id)[0]
+        if type == 'student':
+            user = Student.objects.filter(id = id)[0]
+            create_obj(StudentCourse, course=course, student=user, progress='')
+        tasks = Task.objects.filter(course=course)
+        answer_options = []
+        for task in tasks:
+            for answer_option in AnswerOption.objects.filter(task=task):
+                answer_options.append(answer_option)
+        return render(request, 'course.html',  {
+            'title': course.title,
+            'course': course,
+            'tasks': tasks,
+            'answer_options': answer_options
+            })
+    return HttpResponseRedirect(request._current_scheme_host)
 
 def personal_office_student(request, student_id=1):
     student = Student.objects.filter(id = student_id)[0]
