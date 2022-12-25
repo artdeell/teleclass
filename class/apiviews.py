@@ -46,21 +46,23 @@ class Auth(APIView):
         except:
             return Response({'error':'Поле "Номер телефона" должно начинаться с +7 или 8'}, status=status.HTTP_400_BAD_REQUEST)
         
-        student = search_obj(Student, **request.data)
-        parent = search_obj(Parent, phone=request.data['phone'])
-        teacher = search_obj(Teacher, phone=request.data['phone'])
-        if student!=None:
-            val = student[0].id
-            type_user = 'student'
-        elif parent!=None:
-            val = parent[0].id
-            type_user = 'parent'
-        elif teacher!=None:
-            val = teacher[0].id
-            type_user = 'teacher'
-        else:
+        users = [search_obj(Student, **request.data), 
+                search_obj(Parent, phone=request.data['phone']), 
+                search_obj(Teacher, phone=request.data['phone'])]
+        type_users = ['student', 'paent', 'teacher']
+        flag = True
+        for index in range(3):
+            if users[index]!=None:
+                val = users[index][0].id
+                type = type_users[index]
+                flag = False
+        if flag:
             return Response({'error': 'Данный пользователь не зарегистрирован в системе'}, status=status.HTTP_400_BAD_REQUEST)
-        return Response({'id':val, 'type_user': type_user})
+        response = Response(status=status.HTTP_200_OK)
+        response.set_cookie(key = 'id', value=val, httponly=False)
+        response.set_cookie(key = 'type', value=type, httponly=False)
+        response.set_cookie(key = 'is_login', value=True, httponly=False)
+        return response
 
         
         

@@ -25,6 +25,7 @@
 
 <div class="catalog">
     <div class="catalog-row">
+        {% if catalog %}
         {% for course in catalog %}
             <div class="course">
                 <div class="course-row-top">
@@ -50,6 +51,7 @@
                 </div>
             </div>
         {% endfor %}
+        {% endif %}
     </div>
 </div>
 <div class="add-courses-row">
@@ -61,5 +63,6 @@
 
 {% block scripts %}
 <script charset="UTF-8" src="{% static 'js/catalog.js' %}"></script>
+<script charset="UTF-8" src="{% static 'js/cookie.js' %}"></script>
 {% endblock scripts %}
 

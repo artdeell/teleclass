@@ -59,7 +59,6 @@ teacher_btn.addEventListener('click', function(){
     child_btn.style.color = "rgb(31 34 41)"
 })
 
-
 document.querySelector("button.auth-big#create-acc").addEventListener('click', registration)
 document.querySelector("button.auth-big#auth").addEventListener('click', auth)
 
@@ -78,9 +77,6 @@ function auth(login = '', password=''){
     request.send(JSON.stringify(data))
     request.onload = ()=>{
         if(request.status == 200){
-            response =  JSON.parse(request.responseText)
-            number_user = ''+response['id']
-            type_user = response['type_user']
             if(type_user == 'student'){
                 window.location.href = 'http://'+window.location.host+'/catalog/'+number_user+'/'
             }

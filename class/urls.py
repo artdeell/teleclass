@@ -15,5 +15,6 @@ urlpatterns = [
     path('student/<student_id>', views.personal_office_student),
     path('parent/<parent_id>', views.personal_office_parent),
     path('teacher/<teacher_id>', views.personal_office_teacher),
+    path('catalog/', views.catalog)
 ]
 
