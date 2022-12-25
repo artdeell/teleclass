@@ -86,7 +86,6 @@ function auth(login = '', password = '') {
             if (obj['type'] == 'student') {
                 window.location.href = window.location.origin + '/catalog/'
             } else {
-                alert(`${window.location.origin}/${obj['type']}/${obj['id']}`)
                 window.location.href = `${window.location.origin}/${obj['type']}/${obj['id']}`
             }
             if (request.status == 400) {

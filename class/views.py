@@ -29,7 +29,8 @@ def course(request, course_id):
         course = Course.objects.filter(id=course_id)[0]
         if type == 'student':
             user = Student.objects.filter(id = id)[0]
-            create_obj(StudentCourse, course=course, student=user, progress='')
+            if search_obj(StudentCourse, course=course, student=user) == None:
+                create_obj(StudentCourse, course=course, student=user, progress=0)
         tasks = Task.objects.filter(course=course)
         answer_options = []
         for task in tasks:
