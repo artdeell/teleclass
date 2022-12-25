@@ -709,8 +709,8 @@ button.user-info-change{
     display: flex;
     flex-flow: column nowrap;
     flex: 0 1 330px;
-    background: white;
-    border: 1px solid rgb(214 214 214);
+    background: rgb(240 241 242);
+    border: 0;
     border-radius: 15px;
     height: 125px;
     margin: 15px;
