@@ -1,0 +1,63 @@
+{% extends 'personal-office.html' %}
+{% load static %}
+
+{% block nav-panel-buttons %}
+<a href="" class="nav-menu">Каталог курсов</a>
+{% endblock nav-panel-buttons %}
+
+{% block user-full-name %}
+{{student.surname}} {{student.name}} {{student.patronymic}}
+{% endblock user-full-name %}
+{% block user-phone %}
+{{student.phone}}
+{% endblock user-phone %}
+{% block user-id %}
+{{student.id}}
+{% endblock user-id %}
+
+{% block user-info %}
+<h1>Мои курсы</h1>
+<div class="catalog">
+    <div class="catalog-row">
+        {% if catalog %}
+        {% for course in catalog %}
+        <div class="course">
+            <div class="course-row-top">
+                <div class="course-col">
+                    <div class="course-title">
+                        {{ course.title }}
+                    </div>
+                    <div class="course-description">
+                        {{ course.description }}
+                    </div>
+                </div>
+                <div class="course-icon">
+                    <img src="{% static 'pictures/default-course-icon.png' %}" class="course-icon-img">
+                </div>
+            </div>
+            <div class="course-row-bot">
+                <div class="course-max-point">
+                    {{ course.max_point }}
+                </div>
+                <button class="course-open" id={{ course.id }}>
+                    Открыть курс
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h2 class="without-margin">У вас пока что нет курсов :(</h2>
+        {% endif %}
+    </div>
+</div>
+<h1>Статистика</h1>
+{% if statistic %}
+    {{statistic.student}}
+{% else %}
+<h2 class="without-margin">У вас пока что нет статистики :(</h2>
+{% endif %}
+{% endblock user-info %}
+
+{% block scripts %}
+<script charset="UTF-8" src="{% static 'js/personal-office.js' %}"></script>
+{% endblock scripts %}

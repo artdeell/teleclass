@@ -23,7 +23,7 @@ class Statistic(models.Model):
         verbose_name_plural = "Статистика"
 
     def __str__(self):
-        return str(f"{self.surname}<->{self.name}")
+        return str(f"{self.student}")
 
 class Parent(models.Model):
     surname = models.TextField('Фамилия')
@@ -51,13 +51,27 @@ class ParentStudent(models.Model):
     def __str__(self):
         return str(f"{self.parent}<->{self.student}")
 
+class Teacher(models.Model):
+    surname = models.TextField('Фамилия')
+    name = models.TextField('Имя')
+    patronymic = models.TextField('Отчество')
+    phone = models.TextField('Номер телефона')
+    password = models.TextField('Пароль')
+
+    class Meta:
+        verbose_name = "Учитель"
+        verbose_name_plural = "Учителя"
+
+    def __str__(self):
+        return str(f"{self.surname}<->{self.name}")
+
 class Course(models.Model):
     title = models.TextField('Название')
     description = models.TextField('Описание')
-    progress = models.TextField('Прогресс')
     max_point = models.TextField('Максимальный балл')
     theory = models.TextField('Теория')
-    creation_date = models.DateTimeField('Дата создания')
+    creation_date = models.DateTimeField('Дата создания', auto_now=True)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=False)
 
     class Meta:
         verbose_name = "Курс"
@@ -108,6 +122,7 @@ class TaskStatistic(models.Model):
 class StudentCourse(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, null=False)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=False)
+    progress = models.TextField('Прогресс', default=0)
 
     class Meta:
         verbose_name = "УченикКурс"
@@ -115,17 +130,3 @@ class StudentCourse(models.Model):
 
     def __str__(self):
         return str(f"{self.student}<->{self.course}")
-
-class Teacher(models.Model):
-    surname = models.TextField('Фамилия')
-    name = models.TextField('Имя')
-    patronymic = models.TextField('Отчество')
-    phone = models.TextField('Номер телефона')
-    password = models.TextField('Пароль')
-
-    class Meta:
-        verbose_name = "Учитель"
-        verbose_name_plural = "Учителя"
-
-    def __str__(self):
-        return str(f"{self.surname}<->{self.name}")

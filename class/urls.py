@@ -12,5 +12,8 @@ urlpatterns = [
     # path('api/courses/<int:id>/take', apiviews.TakeCourse.as_view()),
     # path('home/<int:id>/', views.auth)#Поменять
     path('catalog/course/<course_id>/', views.course),
+    path('student/<student_id>', views.personal_office_student),
+    path('parent/<parent_id>', views.personal_office_parent),
+    path('teacher/<teacher_id>', views.personal_office_teacher),
 ]
 
