@@ -1,3 +1,10 @@
+document.querySelector("a.nav-menu#logout").addEventListener('click', ()=>{
+    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+    window.location.href = window.location.origin
+})
+
+
+
 buttons_course_create_step = document.querySelectorAll("button.create-course-step")
 buttons_course_create_step.forEach(button_course_create_step => {
     if (button_course_create_step.id != "add-step" && button_course_create_step.id != "remove-step") {

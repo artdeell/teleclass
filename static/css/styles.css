@@ -178,8 +178,9 @@ img#nav-menu-white{
     pointer-events: none;
 }
 
-a.nav-menu{
+.nav-menu#office{
     font-size: 12px;
+    z-index: 1000000000000;
 }
 
 /* Search */

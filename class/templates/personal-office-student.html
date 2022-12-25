@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block nav-panel-buttons %}
-<a href="" class="nav-menu">Каталог курсов</a>
-<a href="" class="nav-menu">Сменить аккаунт</a>
+<a class="nav-menu" id="catalog">Каталог курсов</a>
+<a class="nav-menu" id="logout">Сменить аккаунт</a>
 {% endblock nav-panel-buttons %}
 
 {% block user-full-name %}
@@ -61,4 +61,5 @@
 
 {% block scripts %}
 <script charset="UTF-8" src="{% static 'js/personal-office.js' %}"></script>
+<script charset="UTF-8" src="{% static 'js/student-office.js' %}"></script>
 {% endblock scripts %}
