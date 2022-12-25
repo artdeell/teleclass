@@ -8,7 +8,7 @@
 {% endblock background-image %}
 
 {% block nav-panel-buttons %}
-<a href="" class="nav-menu">Личный кабинет</a>
+<a class="nav-menu" id="office">Личный кабинет</a>
 {% endblock nav-panel-buttons %}
 
 {% block main-window %}
@@ -64,5 +64,6 @@
 {% block scripts %}
 <script charset="UTF-8" src="{% static 'js/catalog.js' %}"></script>
 <script charset="UTF-8" src="{% static 'js/cookie.js' %}"></script>
+<script charset="UTF-8" src="{% static 'js/go-to-personal-office.js' %}"></script>
 {% endblock scripts %}
 

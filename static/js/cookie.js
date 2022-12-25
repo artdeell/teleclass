@@ -1,6 +1,6 @@
 window.onload = ()=>{
     var obj = {};
-    var cookies = document.cookie.split(/;/);
+    var cookies = document.cookie.split(/; /);
     for (var i = 0, len = cookies.length; i < len; i++) {
         var cookie = cookies[i].split(/=/);
         obj[cookie[0]] = cookie[1];

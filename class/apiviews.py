@@ -49,7 +49,7 @@ class Auth(APIView):
         users = [search_obj(Student, **request.data), 
                 search_obj(Parent, phone=request.data['phone']), 
                 search_obj(Teacher, phone=request.data['phone'])]
-        type_users = ['student', 'paent', 'teacher']
+        type_users = ['student', 'parent', 'teacher']
         flag = True
         for index in range(3):
             if users[index]!=None:
