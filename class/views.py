@@ -42,7 +42,7 @@ def course(request, course_id):
             'tasks': tasks,
             'answer_optiosns': answer_options
             })
-    return HttpResponseRedirect(request._current_scheme_host)
+    return HttpResponseRedirect(f'{request._current_scheme_host}/{type}/{id}')
 
 def personal_office_student(request, student_id=1):
     id = request.COOKIES.get('id')
