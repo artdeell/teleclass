@@ -1,10 +1,15 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from .models import *
 
 # Create your views here.
 def auth(request):
-    return render(request, 'auth.html', {
-        'title': 'Авторизация'
+    if 'is_login' in request.COOKIES and 'type' in request.COOKIES and 'id' in request.COOKIES:
+        if request.COOKIES['is_login'] == 'True':
+            return HttpResponseRedirect('/catalog/')
+    return render(request,
+        'auth.html', {
+            'title': 'Авторизация'
         })
 
 def catalog(request):
