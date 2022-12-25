@@ -841,12 +841,30 @@ button.create-course-step{
     font-family: sans-regular;
     border: 3px solid rgb(31 34 41);
 }
+button.create-course-step-theory{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 45px;
+    width: 90px;
+    background-color: rgb(63 203 255);
+    /* background-color: rgb(63 203 255); */
+    border-radius: 30px;
+    margin: 0 5px;
+    font-size: 18px;
+    font-family: sans-regular;
+    border: 3px solid rgb(31 34 41);
+}
 
 .create-course-step-title{
     color: white;
 }
 
 button.create-course-step#active{
+    border: 3px solid rgb(240 241 242);
+}
+button.create-course-step-theory#active{
     border: 3px solid rgb(240 241 242);
 }
 
