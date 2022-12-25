@@ -70,24 +70,62 @@
                             Т
                         </div>
                     </button>
-                    <button class="create-course-step">
-                        <div class="create-course-step-title">
-                            1
-                        </div>
-                    </button>
-                    <button class="create-course-step" id="add-step">
-                        <div class="create-course-step-title">
-                            ╋
-                        </div>
-                    </button>
                 </div>
+                <button class="create-course-step" id="add-step">
+                    <div class="create-course-step-title">
+                        ╋
+                    </div>
+                </button>
                 <button class="create-course-step" id="remove-step">
                     <div class="create-course-step-title">
                         ╳
                     </div>
                 </button>
-                
             </div>
+            <div class="create-course-theory">
+                <div class="create-course-theory-col">
+                    <div class="create-course-theory-title-row">
+                        Теория
+                    </div>
+                    <div class="create-course-theory-row">
+                        <textarea class="theory-content"
+                            placeholder="Пишите здесь теоретическую часть курса"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            {% for task in tasks %}
+            <div class="create-course-task" id={{task}}>
+                <div class="create-course-task-col">
+                    <div class="create-course-task-title-row">
+                        Задание {{task}}
+                    </div>
+                    <div class="create-course-task-row">
+                        <textarea class="task-text" placeholder="Пишите здесь текст задания"></textarea>
+                    </div>
+                    <div class="create-course-task-answers-options">
+                        <div class="create-course-task-answers-options-col">
+                            <div class="create-course-task-answers-options-title-row">
+                                Варианты ответов
+                            </div>
+                            <div class="create-course-task-answers-options-row">
+                                <div class="create-course-task-answer-option" id="1">
+                                    <input type="checkbox" id="1">
+                                    <textarea class="answer-option-text"
+                                        placeholder="Пишите здесь текст варианта ответа"></textarea>
+                                </div>
+                                <div class="create-course-task-answer-option" id="2">
+                                    <input type="checkbox" id="2">
+                                    <textarea class="answer-option-text"
+                                        placeholder="Пишите здесь текст варианта ответа"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-answer-option" id=2>Добавить вариант ответа</button>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

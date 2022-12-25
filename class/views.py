@@ -66,8 +66,10 @@ def personal_office_parent(request, parent_id=1):
 def personal_office_teacher(request, teacher_id=1):
     teacher = Teacher.objects.filter(id = teacher_id)[0]
     catalog = Course.objects.filter(teacher = teacher)
+    tasks = [1, 2, 3, 4, 5]
     return render(request, 'personal-office-teacher.html', {
         'title': 'Личный кабинет',
         'teacher': teacher,
-        'catalog': catalog
+        'catalog': catalog,
+        'tasks': tasks
         })
