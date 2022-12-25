@@ -9,3 +9,8 @@ window.onload = ()=>{
         window.location.href = `http://${window.location.host}/`
     }
 }
+
+function exitAccount(){
+    document.cookie = ''
+    window.location.href = window.location.origin
+}
