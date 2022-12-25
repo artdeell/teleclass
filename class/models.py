@@ -29,7 +29,7 @@ class Parent(models.Model):
     surname = models.TextField('Фамилия')
     name = models.TextField('Имя')
     patronymic = models.TextField('Отчество')
-    phone = models.TextField('Номер телефона')
+    phone = models.IntegerField('Номер телефона')
     password = models.TextField('Пароль')
     
 
@@ -55,7 +55,7 @@ class Teacher(models.Model):
     surname = models.TextField('Фамилия')
     name = models.TextField('Имя')
     patronymic = models.TextField('Отчество')
-    phone = models.TextField('Номер телефона')
+    phone = models.IntegerField('Номер телефона')
     password = models.TextField('Пароль')
 
     class Meta:
@@ -68,7 +68,7 @@ class Teacher(models.Model):
 class Course(models.Model):
     title = models.TextField('Название')
     description = models.TextField('Описание')
-    max_point = models.TextField('Максимальный балл')
+    max_point = models.IntegerField('Максимальный балл')
     theory = models.TextField('Теория')
     creation_date = models.DateTimeField('Дата создания', auto_now=True)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=False)
@@ -80,12 +80,23 @@ class Course(models.Model):
     def __str__(self):
         return str(f"{self.title}<->{self.creation_date}")
 
+class TaskType(models.Model):
+    subject_area = models.TextField('Предметная область')
+    theme = models.TextField('Тема')
+
+    class Meta:
+        verbose_name = "Тип задания"
+        verbose_name_plural = "Типы заданий"
+
+    def __str__(self):
+        return str(f"{self.number}<->{self.type}")
+
 class Task(models.Model):
-    number = models.TextField('Номер')
-    type = models.TextField('Тип')
-    point = models.TextField('Балл')
+    number = models.IntegerField('Номер')
+    type = models.ForeignKey(TaskType, on_delete=models.CASCADE)
+    point = models.IntegerField('Балл')
     text = models.TextField('Текст задания')
-    picture = models.ImageField('Картинка')
+    picture = models.ImageField('Картинка', null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=False)
 
     class Meta:
@@ -94,6 +105,8 @@ class Task(models.Model):
 
     def __str__(self):
         return str(f"{self.number}<->{self.type}")
+
+
 
 class AnswerOption(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE, null=False)
@@ -122,7 +135,7 @@ class TaskStatistic(models.Model):
 class StudentCourse(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, null=False)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=False)
-    progress = models.TextField('Прогресс', default=0)
+    progress = models.IntegerField('Прогресс', default=0)
 
     class Meta:
         verbose_name = "УченикКурс"
