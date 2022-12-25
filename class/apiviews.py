@@ -9,7 +9,61 @@ from django.shortcuts import redirect
 from .globalFunction import *
 from .models import *
 
+user_type = {
+    'student':Student,
+    'parent':Parent,
+    'teacher':Teacher
+}
 
+class Reg(APIView):
+    def post(self, request):
+        data = request.data
+        if data['name'] == '' and not data['name'].isalpha():
+            return Response({'error':'Поле "Имя" должно быть заполнено и содержать только буквы'}, status=status.HTTP_400_BAD_REQUEST)
+        if data['surname'] == '' and not data['name'].isalpha():
+            return Response({'error':'Поле "Фамилия" должно быть заполнено и содержать только буквы'}, status=status.HTTP_400_BAD_REQUEST)
+        if data['patronymic'] != '' and not data['patronymic'].isalpha():
+            return Response({'error':'Поле "Отчество" должно содержать только буквы'}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            if data['phone'][0] == '8':
+                data['phone'][0] = ''
+            data['phone'] = int(data['phone'].replace('+7', ''))
+        except:
+            return Response({'error':'Поле "Номер телефона" должно начинаться с +7 или 8'}, status=status.HTTP_400_BAD_REQUEST)
+        user_t = user_type[data['user_type']]
+        data.pop('user_type')
+        if search_obj(user_t, phone=data['phone']) == None:
+            create_obj(user_t, **data)
+            return Response(status=status.HTTP_200_OK)
+        return Response({'error': 'Пользователь с таким номером был зарегистрирован раннее'}, status=status.HTTP_400_BAD_REQUEST)
+
+class Auth(APIView):
+    def post(self, request):
+        try:
+            if request.data['phone'][0] == '8':
+                request.data['phone'][0] = ''
+            request.data['phone'] = int(request.data['phone'].replace('+7', ''))
+        except:
+            return Response({'error':'Поле "Номер телефона" должно начинаться с +7 или 8'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        student = search_obj(Student, **request.data)
+        parent = search_obj(Parent, phone=request.data['phone'])
+        teacher = search_obj(Teacher, phone=request.data['phone'])
+        if student!=None:
+            val = student[0].id
+            type_user = 'student'
+        elif parent!=None:
+            val = parent[0].id
+            type_user = 'parent'
+        elif teacher!=None:
+            val = teacher[0].id
+            type_user = 'teacher'
+        else:
+            return Response({'error': 'Данный пользователь не зарегистрирован в системе'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'id':val, 'type_user': type_user})
+
+        
+        
 # class Registraton(APIView):
 #     def post(self, request):
 #         if search_obj(Parent, login=request.data['login']) == None and request.data['user_type'] == 'parent':

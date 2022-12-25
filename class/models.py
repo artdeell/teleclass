@@ -5,7 +5,7 @@ class Student(models.Model):
     surname = models.TextField('Фамилия')
     name = models.TextField('Имя')
     patronymic = models.TextField('Отчество')
-    phone = models.TextField('Номер телефона')
+    phone = models.IntegerField('Номер телефона')
     password = models.TextField('Пароль')
 
     class Meta:
