@@ -1,0 +1,55 @@
+{% extends 'personal-office.html' %}
+{% load static %}
+
+{% block nav-panel-buttons %}
+<a href="" class="nav-menu">Сменить аккаунт</a>
+{% endblock nav-panel-buttons %}
+
+{% block user-full-name %}
+{{parent.surname}} {{parent.name}} {{parent.patronymic}}
+{% endblock user-full-name %}
+{% block user-phone %}
+{{parent.phone}}
+{% endblock user-phone %}
+{% block user-id %}
+{{parent.id}}
+{% endblock user-id %}
+
+{% block user-info %}
+<h1>Дети</h1>
+<div class="childs">
+    <div class="childs-row">
+        {% if childs %}
+        {% for child in childs %}
+        <div class="child">
+            <div class="child-row">
+                <div class="child-name">
+                    {{child.name}}
+                </div>
+            </div>
+            <div class="child-row">
+                <button class="child-statistic-open">
+                    Перейти к статистике
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h2 class="without-margin">Мы не нашли ваших детей в базе данных,
+             возможно, они не указали вас как родителя :(</h2>
+        {% endif %}
+    </div>
+</div>
+<h1>Статистика</h1>
+{% if statistic %}
+{% for child_statistic in statistic %}
+{{child_statistic}}
+{% endfor %}
+{% else %}
+<h2 class="without-margin">У вас пока что нет статистики :(</h2>
+{% endif %}
+{% endblock user-info %}
+
+{% block scripts %}
+<script charset="UTF-8" src="{% static 'js/personal-office.js' %}"></script>
+{% endblock scripts %}

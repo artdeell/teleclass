@@ -8,6 +8,8 @@ urlpatterns = [
     path('', views.auth),
     path('catalog/', views.catalog),
     path('catalog/course/<course_id>/', views.course),
-    path('/<user_id>', views.personal_office),
+    path('student/<student_id>', views.personal_office_student),
+    path('parent/<parent_id>', views.personal_office_parent),
+    path('teacher/<teacher_id>', views.personal_office_teacher),
 ]
 

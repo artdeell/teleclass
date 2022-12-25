@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block background-image %}
+<div class="background">
+    <img class="background" src="{% static 'pictures/background-catalog.png' %}"></img>
+</div>
+{% endblock background-image %}
+
+{% block nav-panel-buttons %}
+{% endblock nav-panel-buttons %}
+
+{% block main-window %}
+
+<div class="user-info">
+    <div class="user-info-row">
+        <div class="user-info-col">
+            <div class="user-info-base-row">
+                <div class="user-info-base-col">
+                    <div class="user-info-full-name-row">
+                        {% block user-full-name %}
+                        {% endblock user-full-name %}
+                    </div>
+                    <div class="user-info-id-row">
+                        Персональный идентификатор: {% block user-id %}
+                        {% endblock user-id %}
+                    </div>
+                </div>
+                <div class="user-info-change-col">
+                    <div class="user-info-change-row">
+                        <button class="user-info-change">
+                            Изменить ФИО
+                        </button>
+                    </div>
+                    <div class="user-info-change-row">
+                        <button class="user-info-change">
+                            Изменить номер
+                        </button>
+                    </div>
+                    <div class="user-info-change-row">
+                        <button class="user-info-change">
+                            Изменить пароль
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block user-info %}
+{% endblock user-info %}
+
+{% endblock main-window %}
+
+
+
+
+{% block scripts %}
+<script charset="UTF-8" src="{% static 'js/personal-office.js' %}"></script>
+{% endblock scripts %}

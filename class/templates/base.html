@@ -12,7 +12,8 @@
 <header>
     <div class="row" id="nav-menu">
         <img src="{% static 'pictures/teleclass-white.png' %}" id="nav-menu-white">
-        <a href="" class="nav-menu">Личный кабинет</a>
+        {% block nav-panel-buttons %}
+        {% endblock nav-panel-buttons %}
     </div>
 </header>
 <body>

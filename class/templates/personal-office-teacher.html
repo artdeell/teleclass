@@ -1,0 +1,60 @@
+{% extends 'personal-office.html' %}
+{% load static %}
+
+{% block user-full-name %}
+{{teacher.surname}} {{teacher.name}} {{teacher.patronymic}}
+{% endblock user-full-name %}
+{% block user-phone %}
+{{teacher.phone}}
+{% endblock user-phone %}
+{% block user-id %}
+{{teacher.id}}
+{% endblock user-id %}
+
+
+{% block user-info %}
+
+<div class="my-courses">
+    <div class="my-courses-row">
+        <h1>Мои курсы</h1>
+        <button class="create-course">Создать курс</but>
+    </div>
+</div>
+<div class="catalog">
+    <div class="catalog-row">
+        {% if catalog %}
+        {% for course in catalog %}
+        <div class="course">
+            <div class="course-row-top">
+                <div class="course-col">
+                    <div class="course-title">
+                        {{ course.title }}
+                    </div>
+                    <div class="course-description">
+                        {{ course.description }}
+                    </div>
+                </div>
+                <div class="course-icon">
+                    <img src="{% static 'pictures/default-course-icon.png' %}" class="course-icon-img">
+                </div>
+            </div>
+            <div class="course-row-bot">
+                <div class="course-max-point">
+                    {{ course.max_point }}
+                </div>
+                <button class="course-open" id={{ course.id }}>
+                    Открыть курс
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h2 class="without-margin">У вас пока что нет курсов :(</h2>
+        {% endif %}
+    </div>
+</div>
+{% endblock user-info %}
+
+{% block scripts %}
+<script charset="UTF-8" src="{% static 'js/personal-office.js' %}"></script>
+{% endblock scripts %}
