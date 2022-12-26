@@ -35,7 +35,9 @@ function end(){
     request.send(JSON.stringify(data))
     request.onload = () => {
         if (request.status==200) {
-            
+            window.location.href = `${window.location.origin}/${obj['type']}/${obj['id']}`
+        }else{
+            alert('Ошибка доавления курса')
         }
     }
 }

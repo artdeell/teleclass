@@ -33,14 +33,13 @@ class Reg(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         try:
-            if data["phone"][0] == "8":
-                data["phone"][0] = ""
-            data["phone"] = int(data["phone"].replace("+7", ""))
+            if data['phone'][0] == '8':
+                data['phone'] = data['phone'][1:]
+            data['phone'] = int(data['phone'].replace('+7', ''))
         except:
             return Response(
-                {"error": 'Поле "Номер телефона" должно начинаться с +7 или 8'},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+                {'error': 'Поле "Номер телефона" должно начинаться с +7 или 8'},
+                status=status.HTTP_400_BAD_REQUEST)
         user_t = user_type[data["user_type"]]
         data.pop("user_type")
         if search_obj(user_t, phone=data["phone"]) == None:
