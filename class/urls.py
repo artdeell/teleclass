@@ -16,5 +16,6 @@ urlpatterns = [
     path('api/authorizations', apiviews.Auth.as_view()),
     path('api/registrations', apiviews.Reg.as_view()),
     path('api/add-course/', apiviews.АddСourse.as_view()),
+    path('api/save-course-progress/', apiviews.SaveCourseProgress.as_view()),
 ]
 

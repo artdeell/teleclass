@@ -54,18 +54,18 @@ class Reg(APIView):
 class Auth(APIView):
     def post(self, request):
         try:
-            if request.data["phone"][0] == "8":
-                request.data["phone"][0] = ""
-            request.data["phone"] = int(request.data["phone"].replace("+7", ""))
+            if request.data['phone'][0] == '8':
+                request.data['phone'] = request.data['phone'][1:]
+            request.data['phone'] = int(request.data['phone'].replace('+7', ''))
         except:
             return Response(
-                {"error": 'Поле "Номер телефона" должно начинаться с +7 или 8'},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+                {'error': 'Поле "Номер телефона" должно начинаться с +7 или 8'},
+                status=status.HTTP_400_BAD_REQUEST)
 
         users = [
             search_obj(Student, **request.data),
             search_obj(Parent, phone=request.data["phone"]),
+
             search_obj(Teacher, phone=request.data["phone"]),
         ]
         type_users = ["student", "parent", "teacher"]
@@ -133,7 +133,25 @@ class АddСourse(APIView):
                                 AnswerOption,
                                 task=task_,
                                 text=variant['text'],
-                                is_right=variant['is_right']=="true"
+                                is_right=variant['is_right']
                                 )
 
         return Response()
+
+
+class SaveCourseProgress(APIView):
+    def post(self, request):
+        data = request.data
+        id = request.COOKIES.get("id")
+        type = request.COOKIES.get("type")
+        is_login = request.COOKIES.get("is_login")
+        variants = {}
+        i = 0
+        if is_login == "True" and type == "student":
+            for row in data:
+                task = search_obj(Task, number=row['number'])[0]
+                vals = search_obj(AnswerOption, task=task, is_right=True)
+                for val in vals:
+                    variants[row['number']] = row['answer'] == str(val.id)
+        return Response(variants)
+

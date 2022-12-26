@@ -41,9 +41,7 @@
                 <div class="practice-title">
                     Задание
                 </div>
-                <div class="practice-number">
-                    {{task.number}}
-                </div>
+                <div class="practice-number">{{task.number}}</div>
             </div>
             <div class="border-gray">
             </div>
@@ -55,7 +53,7 @@
                 {% for answer_option in answer_options %}
                 {% if answer_option.task == task %}
                 <div class="answer-option-row">
-                    <input type="checkbox" class="answer-option">
+                    <input type="checkbox" class="answer-option" id={{answer_option.id}}>
                     <div class="answer-option-text">
                         {{answer_option.text}}
                     </div>
@@ -68,7 +66,7 @@
 </div>
 {% endfor %}
 <button class="end-course">
-    Завершить тест
+    Сохранить прогресс
 </button>
 {% endblock main-window %}
 
@@ -76,4 +74,5 @@
 <script charset="UTF-8" src="{% static 'js/course.js' %}"></script>
 <script charset="UTF-8" src="{% static 'js/cookie.js' %}"></script>
 <script charset="UTF-8" src="{% static 'js/go-to-personal-office.js' %}"></script>
+<script charset="UTF-8" src="{% static 'js/end-cource.js' %}"></script>
 {% endblock scripts %}
