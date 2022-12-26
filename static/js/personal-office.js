@@ -79,7 +79,7 @@ function RemoveStep() {
 function AddAnswerOption(){
     document.querySelector(".create-course-task-answers-options-row").innerHTML += `<div class="create-course-task-answer-option" id="${++this.id}">
             <input type="checkbox" id="${this.id}">
-            <textarea class="answer-option-text"
+            <textarea class="answer-option-text" id="${this.id}"
                 placeholder="Пишите здесь текст варианта ответа"></textarea>
         </div>`
 }
