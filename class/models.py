@@ -15,8 +15,22 @@ class Student(models.Model):
     def __str__(self):
         return str(f"{self.surname}<->{self.name}")
 
+class TaskType(models.Model):
+    subject_area = models.TextField('Предметная область')
+    theme = models.TextField('Тема')
+
+    class Meta:
+        verbose_name = "Тип задания"
+        verbose_name_plural = "Типы заданий"
+
+    def __str__(self):
+        return str(f"{self.subject_area}<->{self.theme}")
+
 class Statistic(models.Model):
     student = models.OneToOneField(Student, on_delete=models.PROTECT, primary_key=False)
+    task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE)
+    is_right = models.IntegerField('Правильно')
+    is_unright = models.IntegerField('Неправильно')
 
     class Meta:
         verbose_name = "Статистика"
@@ -79,17 +93,6 @@ class Course(models.Model):
 
     def __str__(self):
         return str(f"{self.title}<->{self.creation_date}")
-
-class TaskType(models.Model):
-    subject_area = models.TextField('Предметная область')
-    theme = models.TextField('Тема')
-
-    class Meta:
-        verbose_name = "Тип задания"
-        verbose_name_plural = "Типы заданий"
-
-    def __str__(self):
-        return str(f"{self.subject_area}<->{self.theme}")
 
 class Task(models.Model):
     number = models.IntegerField('Номер')
