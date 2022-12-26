@@ -149,9 +149,10 @@ class SaveCourseProgress(APIView):
         i = 0
         if is_login == "True" and type == "student":
             for row in data:
-                task = search_obj(Task, number=row['number'])[0]
-                vals = search_obj(AnswerOption, task=task, is_right=True)
-                for val in vals:
-                    variants[row['number']] = row['answer'] == str(val.id)
+                tasks = search_obj(Task, number=row['number'])
+                for task in tasks:
+                    vals = search_obj(AnswerOption, task=task, is_right=True)
+                    for val in vals:
+                        variants[row['number']] = row['answer'] == str(val.id)
         return Response(variants)
 

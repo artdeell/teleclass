@@ -6,6 +6,7 @@ document.querySelector(".end-course").addEventListener('click', () => {
             if (row.querySelector("input").checked) {
                 row_['answer'] = row.querySelector("input").id
                 row_['number'] = col.querySelector(".practice-number").firstChild.textContent
+                console.log(data)
                 data.push(row_)
             }
         })
@@ -18,6 +19,7 @@ document.querySelector(".end-course").addEventListener('click', () => {
     request.send(JSON.stringify(data))
     request.onload = ()=> {
         newData = JSON.parse(request.responseText)
+        console.log(newData)
         document.querySelectorAll(".practice-number").forEach(practice_number =>{
             if (newData[practice_number.firstChild.textContent]) {
                 practice_number.style.color = "rgb(65 166 116)"
