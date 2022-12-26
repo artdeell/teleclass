@@ -101,6 +101,24 @@
                         Задание {{task}}
                     </div>
                     <div class="create-course-task-row">
+                        <h2>Предметная область: </h2>
+                        <select class="course-task">
+                            <option class="course-task"></option>
+                            {% for task_type in task_types %}
+                            <option class="course-task">{{task_type.subject_area}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="create-course-task-row">
+                        <h2>Тема: </h2>
+                        <select class="course-task">
+                            <option class="course-task"></option>
+                            {% for task_type in task_types %}
+                            <option class="course-task">{{task_type.theme}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="create-course-task-row">
                         <textarea class="task-text" placeholder="Пишите здесь текст задания"></textarea>
                     </div>
                     <div class="create-course-task-answers-options">

@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from .models import *
 
 from .globalFunction import *
+from django.db.models import Count
 
 # Create your views here.
 def auth(request):
@@ -98,10 +99,18 @@ def personal_office_teacher(request, teacher_id=1):
         teacher = Teacher.objects.filter(id = teacher_id)[0]
         catalog = Course.objects.filter(teacher = teacher)
         tasks = [1, 2, 3, 4, 5]
+        # subject_areas = TaskType.values('subject_area').annotate(dcount=Count('subject_area')).order_by()
+        # themes = TaskType.values('theme').annotate(dcount=Count('theme')).order_by()
+        task_types = (TaskType.objects
+            .all()
+            .annotate(dcount=Count('subject_area'))
+            .order_by('subject_area')
+            )
         return render(request, 'personal-office-teacher.html', {
             'title': 'Личный кабинет',
             'teacher': teacher,
             'catalog': catalog,
-            'tasks': tasks
+            'tasks': tasks,
+            'task_types': task_types
             })
     return HttpResponseRedirect(request._current_scheme_host)

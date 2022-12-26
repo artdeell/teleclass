@@ -1039,3 +1039,16 @@ button.end-coure-create{
     margin: auto;
     margin-bottom: 15px;
 }
+
+select.course-task{
+    margin-left: auto;
+    height: 35px;
+    font-size: 18px;
+    padding-left: 15px;
+    flex: 0 1 200px;
+    text-align: center;
+}
+
+option.course-task{
+    border-radius: 30px;
+}
