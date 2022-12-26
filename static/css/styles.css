@@ -807,6 +807,24 @@ button.create-course{
     font-family: serif-bold;
 }
 
+input.create-course-title{
+    height: 30px;
+    width: 80%;
+    border-radius: 30px;
+    padding: 0 30px;
+    text-align: center;
+    margin: 0 7%;
+    font-size: 24px;
+}
+
+textarea.create-course-description{
+    height: 100px;
+    width: 80%;
+    border-radius: 30px;
+    padding: 30px;
+    margin: 0 7%;
+}
+
 .create-course-steps{
     display: flex;
     flex-flow: row nowrap;
@@ -1027,4 +1045,40 @@ button.add-answer-option{
     border: 0;
     border-radius: 5px;
     padding: 0 15px;
+}
+
+button.end-course-create{
+    width: 95%;
+    height: 35px;
+    background-color: rgba(65 166 116);
+    border: 0;
+    border-radius: 5px;
+    padding: 0 15px;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+select.course-task{
+    height: 35px;
+    font-size: 18px;
+    padding-left: 15px;
+    flex: 0 1 200px;
+    text-align: center;
+}
+
+option.course-task{
+    border-radius: 30px;
+}
+
+input.task-points{
+    width: 30px;
+    height: 30px;
+    font-size: 26px;
+    text-align: center;
+    font-family: serif-regular;
+}
+
+h2.create-course-task-row{
+    width: auto;
+    margin-right: auto;
 }

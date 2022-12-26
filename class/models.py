@@ -89,7 +89,7 @@ class TaskType(models.Model):
         verbose_name_plural = "Типы заданий"
 
     def __str__(self):
-        return str(f"{self.number}<->{self.type}")
+        return str(f"{self.subject_area}<->{self.theme}")
 
 class Task(models.Model):
     number = models.IntegerField('Номер')
