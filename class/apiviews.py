@@ -135,5 +135,9 @@ class АddСourse(APIView):
                                 text=variant['text'],
                                 is_right=variant['is_right']=="true"
                                 )
-
         return Response()
+
+
+class getResponse(APIView):
+    def post(self, request, course_id):
+        pass

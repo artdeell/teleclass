@@ -34,6 +34,7 @@ function end(){
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send(JSON.stringify(data))
     request.onload = () => {
+        alert(request.status)
         if (request.status==200) {
             window.location.href = `${window.location.origin}/${obj['type']}/${obj['id']}`
         }else{
