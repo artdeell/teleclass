@@ -41,7 +41,7 @@ def course(request, course_id):
             'title': course.title,
             'course': course,
             'tasks': tasks,
-            'answer_optiosns': answer_options
+            'answer_options': answer_options
             })
     return HttpResponseRedirect(f'{request._current_scheme_host}/{type}/{id}')
 
@@ -99,8 +99,6 @@ def personal_office_teacher(request, teacher_id=1):
         teacher = Teacher.objects.filter(id = teacher_id)[0]
         catalog = Course.objects.filter(teacher = teacher)
         tasks = [1, 2, 3, 4, 5]
-        # subject_areas = TaskType.values('subject_area').annotate(dcount=Count('subject_area')).order_by()
-        # themes = TaskType.values('theme').annotate(dcount=Count('theme')).order_by()
         task_types = (TaskType.objects
             .all()
             .annotate(dcount=Count('subject_area'))

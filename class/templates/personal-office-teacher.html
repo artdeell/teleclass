@@ -63,6 +63,14 @@
                 Создание курса
             </div>
             <div class="border-gray"></div>
+            <h2>Название курса</h2>
+            <div class="create-course-set-title-row">
+                <input type="text" class="create-course-title">
+            </div>
+            <h2>Описание курса</h2>
+            <div class="create-course-set-description-row">
+                <textarea  id="" class="create-course-description"></textarea>
+            </div>
             <div class="create-course-steps">
                 <div class="create-course-steps-row">
                     <button class="create-course-step" id="theory">
@@ -101,8 +109,8 @@
                         Задание {{task}}
                     </div>
                     <div class="create-course-task-row">
-                        <h2>Предметная область: </h2>
-                        <select class="course-task">
+                        <h2 class="create-course-task-row">Предметная область:</h2>
+                        <select class="course-task"  id="subject-area">
                             <option class="course-task"></option>
                             {% for task_type in task_types %}
                             <option class="course-task">{{task_type.subject_area}}</option>
@@ -110,13 +118,20 @@
                         </select>
                     </div>
                     <div class="create-course-task-row">
-                        <h2>Тема: </h2>
-                        <select class="course-task">
+                        <h2 class="create-course-task-row">Тема:</h2>
+                        <select class="course-task" id="theme">
                             <option class="course-task"></option>
                             {% for task_type in task_types %}
                             <option class="course-task">{{task_type.theme}}</option>
                             {% endfor %}
                         </select>
+                    </div>
+                    <div class="create-course-task-row">
+                        <h2 class="create-course-task-row">Количество баллов:</h2>
+                        <input type="number" class="task-points">
+                    </div>
+                    <div class="create-course-task-row">
+                        <h2 class="create-course-task-row">Текст задания</h2>
                     </div>
                     <div class="create-course-task-row">
                         <textarea class="task-text" placeholder="Пишите здесь текст задания"></textarea>
