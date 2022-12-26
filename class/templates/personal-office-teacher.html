@@ -129,12 +129,12 @@
                             <div class="create-course-task-answers-options-row">
                                 <div class="create-course-task-answer-option" id="1">
                                     <input type="checkbox" id="1">
-                                    <textarea class="answer-option-text"
+                                    <textarea class="answer-option-text" id="1"
                                         placeholder="Пишите здесь текст варианта ответа"></textarea>
                                 </div>
                                 <div class="create-course-task-answer-option" id="2">
                                     <input type="checkbox" id="2">
-                                    <textarea class="answer-option-text"
+                                    <textarea class="answer-option-text" id="2"
                                         placeholder="Пишите здесь текст варианта ответа"></textarea>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                 </div>
             </div>
             {% endfor %}
-            <button class="end-coure-create">Завершить</button>
+            <button class="end-course-create">Завершить</button>
         </div>
     </div>
 </div>
@@ -152,4 +152,5 @@
 
 {% block scripts %}
 <script charset="UTF-8" src="{% static 'js/personal-office.js' %}"></script>
+<script charset="UTF-8" src="{% static 'js/teacher-office.js' %}"></script>
 {% endblock scripts %}
